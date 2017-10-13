@@ -1,5 +1,6 @@
 ﻿using Snake_DesignPatterns.Controllers.Events;
 using Snake_DesignPatterns.Models;
+using Snake_DesignPatterns.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,12 @@ namespace Snake_DesignPatterns.Controllers
 
         public static void NewGame()
         {
+            //Starts the input trigger thread
+            VInput.Instance.Start();
+
+            //Start the ticks trigger thread
+            CTick.Instance.Start();
+
             EventManager mgr = EventManager.Instance;
 
             //Key events
@@ -33,6 +40,17 @@ namespace Snake_DesignPatterns.Controllers
 
             //Register to clock ticks
             mgr.RegisterEvent(Event.ClockTick, new EClockTick());
+        }
+
+        public static void EndGame()
+        {
+            //We do not need the tick thread
+            CTick.Instance.Stop();
+
+            EventManager mgr = EventManager.Instance;
+
+            //UnRegister to clock ticks
+            mgr.UnRegisterEvent(Event.ClockTick, new EClockTick());
         }
     }
 }

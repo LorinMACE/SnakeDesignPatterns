@@ -10,22 +10,48 @@ namespace Snake_DesignPatterns.Controllers
 {
     class CTick
     {
+        //Create a singleton of CTick()
+        private static CTick instance;
+        public static CTick Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new CTick();
+                }
+                return instance;
+            }
+        }
+
+
         private volatile bool shouldStop;
         public volatile int Speed;
 
         Thread worker;
         public CTick()
         {
-            shouldStop = false;
             Speed = 1000;
+            worker = new Thread(work);
+        }
 
-            //Start the thread at start
-            worker = new Thread(Start);
-            worker.Start();
+        public void Start()
+        {
+            //Start only if not started
+            if (!worker.IsAlive)
+            {
+                shouldStop = false;
+                worker.Start();
+            }
+        }
+
+        public void Stop()
+        {
+            shouldStop = true;
         }
 
         // This method will be called when the thread is started.
-        public void Start()
+        private void work()
         {
             while (!shouldStop)
             {
@@ -33,10 +59,6 @@ namespace Snake_DesignPatterns.Controllers
                 Thread.Sleep(Speed);
                 EventManager.Instance.TriggerEvent(Event.ClockTick);
             }
-        }
-        public void Stop()
-        {
-            shouldStop = true;
         }
     }
 }

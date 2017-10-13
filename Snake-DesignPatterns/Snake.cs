@@ -14,22 +14,13 @@ namespace Snake_DesignPatterns
     {
         static void Main(string[] args)
         {
-            //Create and start the input manager
-            VInput inputs  = new VInput();
-
-            //Create and starts Tick Manager
-            CTick ticks = new CTick();
-
-            //inputs.Stop() to exit the thread
 
             //Starts a new game
             CGame.NewGame();
-            while (true)
-            {
-                
-            }
-                
-                
+
+            //Infinite loop for the game
+            while (true){}
+                  
         }
     }
 }

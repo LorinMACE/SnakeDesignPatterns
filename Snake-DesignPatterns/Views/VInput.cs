@@ -32,18 +32,45 @@ namespace Snake_DesignPatterns.Views
             {ConsoleKey.Spacebar,Event.KeyPressedPause}
         };
 
+        //Create a singleton of VInput()
+        private static VInput instance;
+        public static VInput Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new VInput();
+                }
+                return instance;
+            }
+        }
+
         Thread worker;
+
         public VInput()
         {
-            shouldStop = false;
+            worker = new Thread(work);
+        }
 
-            //Start the thread at start
-            worker = new Thread(Start);
-            worker.Start();
+        public void Start()
+        {
+            //Start only if not started
+            if (!worker.IsAlive)
+            {
+                shouldStop = false;
+                worker.Start();
+            }
+
+        }
+
+        public void Stop()
+        {
+            shouldStop = true;
         }
 
         // This method will be called when the thread is started.
-        public void Start()
+        private void work()
         {
             while (!shouldStop)
             {
@@ -57,10 +84,6 @@ namespace Snake_DesignPatterns.Views
                 }
                 Thread.Sleep(100);
             }
-        }
-        public void Stop()
-        {
-            shouldStop = true;
         }
     }
 }
