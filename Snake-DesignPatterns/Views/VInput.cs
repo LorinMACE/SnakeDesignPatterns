@@ -11,7 +11,6 @@ namespace Snake_DesignPatterns.Views
         //Current pressed key
         private ConsoleKeyInfo key;
 
-        //Put to
         private volatile bool shouldStop;
 
         //This array binds the inputs to the events
@@ -21,13 +20,13 @@ namespace Snake_DesignPatterns.Views
             {ConsoleKey.UpArrow,Event.KeyPressedUp},
             {ConsoleKey.DownArrow,Event.KeyPressedDown},
             {ConsoleKey.LeftArrow,Event.KeyPressedLeft},
-            {ConsoleKey.RightArrow,Event.KeyPressedPause},
+            {ConsoleKey.RightArrow,Event.KeyPressedRight},
 
             //Letters
             {ConsoleKey.Z,Event.KeyPressedUp},
             {ConsoleKey.S,Event.KeyPressedDown},
             {ConsoleKey.Q,Event.KeyPressedLeft},
-            {ConsoleKey.D,Event.KeyPressedPause},
+            {ConsoleKey.D,Event.KeyPressedRight},
 
             //Spacebar
             {ConsoleKey.Spacebar,Event.KeyPressedPause}

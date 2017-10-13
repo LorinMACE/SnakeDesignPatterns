@@ -10,7 +10,7 @@ namespace Snake_DesignPatterns.Controllers
 {
     static class CGame
     {
-        static void PrintGameBoard()
+        public static void PrintGameBoard()
         {
             CellTypes[][] GameBoard = new CellTypes[10][];
             int score = 0;
@@ -19,6 +19,20 @@ namespace Snake_DesignPatterns.Controllers
             //Stuff here to get and organise the data. => Call the model
 
             Views.VGame.Print(GameBoard,score,lifes);
+        }
+
+        public static void NewGame()
+        {
+            EventManager mgr = EventManager.Instance;
+
+            //Key events
+            mgr.RegisterEvent(Event.KeyPressedDown,new KeyboardDown());
+            mgr.RegisterEvent(Event.KeyPressedUp, new KeyboardUP());
+            mgr.RegisterEvent(Event.KeyPressedLeft, new KeyboardLeft());
+            mgr.RegisterEvent(Event.KeyPressedRight, new KeyboardRight());
+
+            //Register to clock ticks
+            mgr.RegisterEvent(Event.ClockTick, new EClockTick());
         }
     }
 }
