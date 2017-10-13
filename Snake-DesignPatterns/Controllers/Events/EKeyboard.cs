@@ -11,6 +11,7 @@ namespace Snake_DesignPatterns.Controllers.Events
     {
         public bool Trigger()
         {
+            Console.WriteLine("UP");
             MGame.Instance.Snake.Orientation = SnakeOrientation.Up;
             return true;
         }
@@ -20,6 +21,7 @@ namespace Snake_DesignPatterns.Controllers.Events
     {
         public bool Trigger()
         {
+            Console.WriteLine("LEFT");
             MGame.Instance.Snake.Orientation = SnakeOrientation.Left;
             return true;
         }
@@ -29,6 +31,7 @@ namespace Snake_DesignPatterns.Controllers.Events
     {
         public bool Trigger()
         {
+            Console.WriteLine("DOWN");
             MGame.Instance.Snake.Orientation = SnakeOrientation.Bottom;
             return true;
         }
@@ -38,6 +41,7 @@ namespace Snake_DesignPatterns.Controllers.Events
     {
         public bool Trigger()
         {
+            Console.WriteLine("RIGHT");
             MGame.Instance.Snake.Orientation = SnakeOrientation.Right;
             return true;
         }

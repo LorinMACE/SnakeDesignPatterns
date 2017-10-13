@@ -11,7 +11,7 @@ namespace Snake_DesignPatterns.Controllers.Events
         KeyPressedUp,
         KeyPressedDown,
         KeyPressedLeft,
-        KeyPressedRight,
+        KeyPressedPause,
         CollisionEdge,
         CollisionSnake,
         CollisionFruit,
