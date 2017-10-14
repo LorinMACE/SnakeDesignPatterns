@@ -23,11 +23,37 @@ namespace Snake_DesignPatterns.Controllers
             int fruitX = Game.Fruit.Position.Item1; int fruitY = Game.Fruit.Position.Item2;
             GameBoard[fruitX, fruitY] = CellTypes.Fruit;
 
+            bool first = true;
             //Print the snake in the gameboard
             foreach (var bodypart in Game.Snake.snakebody)
             {
-                int bodypartX = bodypart.Item1;int bodypartY = bodypart.Item2;
-                GameBoard[bodypartX, bodypartY] = CellTypes.SnakeBody;
+                int bodypartX = bodypart.Item1; int bodypartY = bodypart.Item2;
+
+                // The 1st is the head
+                if (first)
+                {
+                    switch (Game.Snake.Orientation)
+                    {
+                        case SnakeOrientation.Bottom:
+                            GameBoard[bodypartX, bodypartY] = CellTypes.SnakeHeadDown;
+                            break;
+                        case SnakeOrientation.Up:
+                            GameBoard[bodypartX, bodypartY] = CellTypes.SnakeHeadUp;
+                            break;
+                        case SnakeOrientation.Left:
+                            GameBoard[bodypartX, bodypartY] = CellTypes.SnakeHeadLeft;
+                            break;
+                        case SnakeOrientation.Right:
+                            GameBoard[bodypartX, bodypartY] = CellTypes.SnakeHeadRight;
+                            break;
+                    }
+                    first = false;
+                } else
+                {
+                    GameBoard[bodypartX, bodypartY] = CellTypes.SnakeBody;
+                }
+                
+                
             }
 
             VGame.Print(GameBoard, Game.Map.Height, Game.Map.Width,score, lifes);

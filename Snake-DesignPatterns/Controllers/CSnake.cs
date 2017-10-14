@@ -45,6 +45,15 @@ namespace Snake_DesignPatterns.Controllers
                 throw new NotImplementedException();
             }
 
+            //Check for collision with itself
+            foreach (var element in Snake.snakebody)
+            {
+                if (element.Item1 == newX && element.Item2 == newY)
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
             //We are OK => Go forward
             Snake.snakebody.AddFirst(new Tuple<int, int>(newX, newY));
 
@@ -57,20 +66,6 @@ namespace Snake_DesignPatterns.Controllers
                 Game.GenerateFruit();
             else
                 Snake.snakebody.RemoveLast();
-
-            //Here we have to generate a new fruit
-            //...
-
-            /*Check for collision with itself
-            foreach (var element in Snake.snakebody)
-            {
-                if (element.Item1 == newX || element.Item2 == newY)
-                {
-                    throw new NotImplementedException();
-                }
-            }
-            */
-
         }
     }
 }
