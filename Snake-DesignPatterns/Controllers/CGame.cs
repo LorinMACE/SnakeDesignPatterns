@@ -13,13 +13,34 @@ namespace Snake_DesignPatterns.Controllers
     {
         public static void PrintGameBoard()
         {
-            CellTypes[][] GameBoard = new CellTypes[10][];
-            int score = 0;
-            int lifes = 0;
+            MGame Game = MGame.Instance;
 
-            //Stuff here to get and organise the data. => Call the model
+            CellTypes[,] GameBoard = new CellTypes[Game.Map.Width,Game.Map.Height];
+            int score = Game.getScore();
+            int lifes = Game.Snake.Nblife;
 
-            Views.VGame.Print(GameBoard,score,lifes);
+            /*
+            for (int i = 0; i < Game.Map.Height; i++)
+            {
+                for (int j = 0; j < Game.Map.Width; j++)
+                {
+                    GameBoard[i, j] = CellTypes.Empty;
+                }
+            }
+            */
+
+            //Print the snake in the gameboard
+            foreach (var bodypart in Game.Snake.snakebody)
+            {
+                int bodypartX = bodypart.Item1;int bodypartY = bodypart.Item2;
+                GameBoard[bodypartX, bodypartY] = CellTypes.SnakeBody;
+            }
+
+            //Print the fruit
+            int fruitX = Game.Fruit.Position.Item1; int fruitY = Game.Fruit.Position.Item2;
+            GameBoard[fruitX,fruitY] = CellTypes.Fruit;
+
+            VGame.Print(GameBoard, Game.Map.Height, Game.Map.Width,score, lifes);
         }
 
         public static void NewGame()

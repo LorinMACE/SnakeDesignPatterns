@@ -12,6 +12,7 @@ namespace Snake_DesignPatterns.Controllers.Events
         {
             //On tick, just update the snake
             CSnake.Move();
+            CGame.PrintGameBoard();
             return true;
         }
     }

@@ -46,9 +46,7 @@
     <Compile Include="Controllers\CSnake.cs" />
     <Compile Include="Controllers\CTick.cs" />
     <Compile Include="Controllers\Events\EClockTick.cs" />
-    <Compile Include="Controllers\Events\EGameOver.cs" />
     <Compile Include="Controllers\Events\EKeyboard.cs" />
-    <Compile Include="Controllers\Events\EMangerFruit.cs" />
     <Compile Include="Controllers\Events\EventManager.cs" />
     <Compile Include="Controllers\Events\EventTypes.cs" />
     <Compile Include="Controllers\Events\IEvent.cs" />

@@ -13,11 +13,6 @@ namespace Snake_DesignPatterns.Controllers.Events
         KeyPressedLeft,
         KeyPressedRight,
         KeyPressedPause,
-        CollisionEdge,
-        CollisionSnake,
-        CollisionFruit,
-        ClockTick,
-        NoLife,
-        GameOver
+        ClockTick
     };
 }

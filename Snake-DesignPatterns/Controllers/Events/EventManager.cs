@@ -17,6 +17,9 @@ namespace Snake_DesignPatterns.Controllers.Events
     {
         private Dictionary<Event, List<IEvent>> listeners;
 
+        // Block events to happen in the same time
+        Mutex EventMutex = new Mutex();
+
         //Constructor
         public EventManager()
         {
@@ -65,9 +68,6 @@ namespace Snake_DesignPatterns.Controllers.Events
             }
         }
 
-        // Block events to happen in the same time
-        Mutex EventMutex = new Mutex();
-
         public bool TriggerEvent(Event key)
         {
             lock (EventMutex)
@@ -93,5 +93,4 @@ namespace Snake_DesignPatterns.Controllers.Events
             }
         }
     }
-
 }

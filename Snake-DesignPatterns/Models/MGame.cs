@@ -31,12 +31,12 @@ namespace Snake_DesignPatterns.Models
         {
             //Initialise all the gameboard here (all the others objects of the model)
             
-            Map = new MMap(30, 15);
+            Map = new MMap(15, 30);
 
-            Snake = new MSnake(3, Map.Height/2, Map.Width/2);
-            Snake.SnakeGrows(Snake.snakebody.Last.Value.Item1 - 1, Snake.snakebody.Last.Value.Item2);
-            Snake.SnakeGrows(Snake.snakebody.Last.Value.Item1 - 1, Snake.snakebody.Last.Value.Item2);
-            Snake.SnakeGrows(Snake.snakebody.Last.Value.Item1 - 1, Snake.snakebody.Last.Value.Item2);
+            Snake = new MSnake(3, Map.Width/2, Map.Height/2);
+            Snake.SnakeGrows(Snake.snakebody.Last.Value.Item1, Snake.snakebody.Last.Value.Item2 + 1);
+            Snake.SnakeGrows(Snake.snakebody.Last.Value.Item1, Snake.snakebody.Last.Value.Item2 + 1);
+            Snake.SnakeGrows(Snake.snakebody.Last.Value.Item1, Snake.snakebody.Last.Value.Item2 + 1);
 
             //pour générer randomly deux entiers, qui seront un tuple
             Random rdn = new Random();
