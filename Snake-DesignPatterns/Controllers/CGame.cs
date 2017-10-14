@@ -19,16 +19,16 @@ namespace Snake_DesignPatterns.Controllers
             int score = Game.getScore();
             int lifes = Game.Snake.Nblife;
 
+            //Print the fruit
+            int fruitX = Game.Fruit.Position.Item1; int fruitY = Game.Fruit.Position.Item2;
+            GameBoard[fruitX, fruitY] = CellTypes.Fruit;
+
             //Print the snake in the gameboard
             foreach (var bodypart in Game.Snake.snakebody)
             {
                 int bodypartX = bodypart.Item1;int bodypartY = bodypart.Item2;
                 GameBoard[bodypartX, bodypartY] = CellTypes.SnakeBody;
             }
-
-            //Print the fruit
-            int fruitX = Game.Fruit.Position.Item1; int fruitY = Game.Fruit.Position.Item2;
-            GameBoard[fruitX,fruitY] = CellTypes.Fruit;
 
             VGame.Print(GameBoard, Game.Map.Height, Game.Map.Width,score, lifes);
         }

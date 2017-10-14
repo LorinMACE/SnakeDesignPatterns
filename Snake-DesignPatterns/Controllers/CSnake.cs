@@ -50,7 +50,7 @@ namespace Snake_DesignPatterns.Controllers
 
             //Check if we are in the position of the fruit
             Tuple<int, int> positionFruit = MGame.Instance.Fruit.Position;
-            bool FruitInCase = (newX == positionFruit.Item1 || newY == positionFruit.Item2);
+            bool FruitInCase = (newX == positionFruit.Item1 && newY == positionFruit.Item2);
 
             //If there is no fruit, we remove the last part of the snake
             if (!FruitInCase)
