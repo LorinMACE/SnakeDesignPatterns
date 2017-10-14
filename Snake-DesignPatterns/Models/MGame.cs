@@ -33,7 +33,10 @@ namespace Snake_DesignPatterns.Models
             
             Map = new MMap(30, 15);
 
-            Snake = new MSnake(3, Map.Height/2, Map.Width/2 );
+            Snake = new MSnake(3, Map.Height/2, Map.Width/2);
+            Snake.SnakeGrows(Snake.snakebody.Last.Value.Item1 - 1, Snake.snakebody.Last.Value.Item2);
+            Snake.SnakeGrows(Snake.snakebody.Last.Value.Item1 - 1, Snake.snakebody.Last.Value.Item2);
+            Snake.SnakeGrows(Snake.snakebody.Last.Value.Item1 - 1, Snake.snakebody.Last.Value.Item2);
 
             //pour générer randomly deux entiers, qui seront un tuple
             Random rdn = new Random();
@@ -46,17 +49,13 @@ namespace Snake_DesignPatterns.Models
 
             Fruit = new MFruit(posFruit);
             
-
         }
 
-        public bool init()
+        //return the score, i.e the size of the LinkedList
+        public int getScore()
         {
-
-            return true;
+            return Snake.snakebody.Count;
         }
-
-       
-
-
+        
     }
 }

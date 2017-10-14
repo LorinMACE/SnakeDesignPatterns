@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Snake_DesignPatterns.Models
 {
+
     class MFruit
     {
         private Tuple<int,int> position;

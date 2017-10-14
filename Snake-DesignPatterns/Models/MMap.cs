@@ -32,5 +32,6 @@ namespace Snake_DesignPatterns.Models
 
         public int Height { get => height; set => height = value; }
         public int Width { get => width; set => width = value; }
+
     }
 }

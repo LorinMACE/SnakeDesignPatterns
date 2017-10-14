@@ -16,7 +16,6 @@ namespace Snake_DesignPatterns.Models
 
     class MSnake
     {
-
         //volatile pour que ce soit accessible par plusieurs threads en meme temps
         public volatile SnakeOrientation Orientation;
 
@@ -41,6 +40,8 @@ namespace Snake_DesignPatterns.Models
 
             //on ajoute a la liste le premier tuple qui est le depart du snake
             snakebody.AddFirst(tuple);
+            Orientation = SnakeOrientation.Up;
+
         }
 
         //On lui passe deux valeurs du dernier tuple du serpent pour ajouter un élément 
