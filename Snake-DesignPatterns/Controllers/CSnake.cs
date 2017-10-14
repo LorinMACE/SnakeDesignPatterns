@@ -53,7 +53,9 @@ namespace Snake_DesignPatterns.Controllers
             bool FruitInCase = (newX == positionFruit.Item1 && newY == positionFruit.Item2);
 
             //If there is no fruit, we remove the last part of the snake
-            if (!FruitInCase)
+            if (FruitInCase)
+                Game.GenerateFruit();
+            else
                 Snake.snakebody.RemoveLast();
 
             //Here we have to generate a new fruit

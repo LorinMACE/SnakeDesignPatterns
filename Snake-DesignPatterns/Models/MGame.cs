@@ -38,17 +38,21 @@ namespace Snake_DesignPatterns.Models
             Snake.SnakeGrows(Snake.snakebody.Last.Value.Item1, Snake.snakebody.Last.Value.Item2 + 1);
             Snake.SnakeGrows(Snake.snakebody.Last.Value.Item1, Snake.snakebody.Last.Value.Item2 + 1);
 
+            GenerateFruit();
+        }
+
+        public void GenerateFruit()
+        {
             //pour générer randomly deux entiers, qui seront un tuple
             Random rdn = new Random();
 
             //générer le random entre 1 et 19 pour abscisse et 1 et 14 pour ordonnees
-            int rdnx = rdn.Next(1, 29);
-            int rdny = rdn.Next(1, 14);
-            
+            int rdnx = rdn.Next(1, Map.Width - 1);
+            int rdny = rdn.Next(1, Map.Height - 1);
+
             Tuple<int, int> posFruit = new Tuple<int, int>(rdnx, rdny);
 
             Fruit = new MFruit(posFruit);
-            
         }
 
         //return the score, i.e the size of the LinkedList
