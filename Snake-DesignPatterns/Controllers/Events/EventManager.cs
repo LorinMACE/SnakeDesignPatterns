@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Snake_DesignPatterns.Controllers.Events
@@ -64,26 +65,32 @@ namespace Snake_DesignPatterns.Controllers.Events
             }
         }
 
+        // Block events to happen in the same time
+        Mutex EventMutex = new Mutex();
+
         public bool TriggerEvent(Event key)
         {
-            List<IEvent> list = listeners.SingleOrDefault(p => p.Key == key).Value;
-
-            //We need to check if the list is empty
-            if (list == null || list.Count == 0)
-                return false;
-
-            IEvent[] inputListeners = list.ToArray();
-
-            //Execute 
-            foreach (var listener in inputListeners)
+            lock (EventMutex)
             {
+                List<IEvent> list = listeners.SingleOrDefault(p => p.Key == key).Value;
 
-                //If an observable return false, we exit the execution of the observables
-                if (!listener.Trigger())
-                    return true;
+                //We need to check if the list is empty
+                if (list == null || list.Count == 0)
+                    return false;
+
+                IEvent[] inputListeners = list.ToArray();
+
+                //Execute 
+                foreach (var listener in inputListeners)
+                {
+
+                    //If an observable return false, we exit the execution of the observables
+                    if (!listener.Trigger())
+                        return true;
+                }
+
+                return true;
             }
-
-            return true;
         }
     }
 

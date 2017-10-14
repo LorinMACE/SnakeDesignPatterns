@@ -24,12 +24,7 @@ namespace Snake_DesignPatterns.Controllers
 
         public static void NewGame()
         {
-            //Starts the input trigger thread
-            VInput.Instance.Start();
-
-            //Start the ticks trigger thread
-            CTick.Instance.Start();
-
+            MGame game = MGame.Instance;
             EventManager mgr = EventManager.Instance;
 
             //Key events
@@ -40,6 +35,12 @@ namespace Snake_DesignPatterns.Controllers
 
             //Register to clock ticks
             mgr.RegisterEvent(Event.ClockTick, new EClockTick());
+
+            //Starts the input trigger thread
+            VInput.Instance.Start();
+
+            //Start the ticks trigger thread
+            CTick.Instance.Start();
         }
 
         public static void EndGame()

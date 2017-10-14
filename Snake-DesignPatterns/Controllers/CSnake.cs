@@ -11,9 +11,31 @@ namespace Snake_DesignPatterns.Controllers
     {
         public static void Move()
         {
-            //Get the orientation of the snake
-            SnakeOrientation orientation = MGame.Instance.Snake.Orientation;
+            MSnake Snake = MGame.Instance.Snake;
 
+            //Get the orientation of the snake
+            SnakeOrientation orientation = Snake.Orientation;
+            Tuple<int, int> PreviousPosition = Snake.snakebody.First();
+            int newX = PreviousPosition.Item1;
+            int newY = PreviousPosition.Item2;
+
+            //New position depending on the orientation
+            switch (orientation)
+            {
+                case SnakeOrientation.Bottom:
+                    newY = newY + 1;
+                    break;
+                case SnakeOrientation.Up:
+                    newY = newY - 1;
+                    break;
+                case SnakeOrientation.Right:
+                    newX = newX + 1;
+                    break;
+                case SnakeOrientation.Left:
+                    newX = newX - 1;
+                    break;
+            }
+            Tuple<int, int> NewPosition = new Tuple<int, int>(newX,newY);
 
             //Check for the intern events (Collisions, GameOver, etc...)
             //...
