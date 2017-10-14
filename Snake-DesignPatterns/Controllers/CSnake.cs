@@ -40,7 +40,7 @@ namespace Snake_DesignPatterns.Controllers
             Tuple<int, int> NewPosition = new Tuple<int, int>(newX,newY);
 
             //Check for the intern events (Collisions, GameOver, etc...)
-            if (newX < 0 || newY < 0 || newX > Game.Map.Width || newX > Game.Map.Height)
+            if (newX < 0 || newY < 0 || newX > Game.Map.Width || newY > Game.Map.Height)
             {
                 throw new NotImplementedException();
             }

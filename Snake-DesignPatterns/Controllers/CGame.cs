@@ -19,16 +19,6 @@ namespace Snake_DesignPatterns.Controllers
             int score = Game.getScore();
             int lifes = Game.Snake.Nblife;
 
-            /*
-            for (int i = 0; i < Game.Map.Height; i++)
-            {
-                for (int j = 0; j < Game.Map.Width; j++)
-                {
-                    GameBoard[i, j] = CellTypes.Empty;
-                }
-            }
-            */
-
             //Print the snake in the gameboard
             foreach (var bodypart in Game.Snake.snakebody)
             {
