@@ -27,20 +27,19 @@ namespace Snake_DesignPatterns.Views
         public static void Print(CellTypes[,] gameBoard, int height, int width, int Score, int Lifes)
         {
 
-            // C'est le bout de code qu'a écrit laurin  //
 
-
-            /* for (int i = 0; i < height; i++)
+             for (int i = 0; i < height; i++)
              {
                  String outputline = "";
                  for (int j = 0; j < width; j++)
                  {
                      outputline = outputline + cellsbind[gameBoard[j,i]];
                  }
-                 Console.WriteLine(outputline);
-             }*/
+                Console.SetCursorPosition(2, i+5);
+                Console.WriteLine(outputline);
+             }
 
-            printWall(height, width, Score, Lifes);
+            printWall(height+10, width+2, Score, Lifes);
 
 
         }
@@ -66,12 +65,12 @@ namespace Snake_DesignPatterns.Views
                 Console.Write(wallChar);
             }
             //Affichage du score et de Lifes
-            Console.SetCursorPosition(2, 2);
+            Console.SetCursorPosition(4, 2);
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("    SCORE :  " + score);
-            Console.SetCursorPosition(54, 2);
+            Console.WriteLine("SCORE :  " + score);
+            Console.SetCursorPosition(width / 2+4, 2);
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Life : " + lifes);
+            Console.WriteLine("Lifes : " + lifes);
 
             //dessiner les deux les murs horizontaux
             for (int j = 1; j < width; j++)
@@ -92,5 +91,4 @@ namespace Snake_DesignPatterns.Views
         }
     }
 
-}
 }
