@@ -46,12 +46,14 @@ namespace Snake_DesignPatterns.Controllers
             }
 
             //Check for collision with itself
-            foreach (var element in Snake.snakebody)
+            if (Snake.snakebody.Contains(new Tuple<int,int>(newX,newY)))
             {
-                if (element.Item1 == newX && element.Item2 == newY)
+                Snake.Nblife--;
+                while (!Snake.snakebody.Last.Value.Equals(new Tuple<int, int>(newX, newY)))
                 {
-                    throw new NotImplementedException();
+                    Snake.snakebody.RemoveLast();
                 }
+
             }
 
             //We are OK => Go forward
