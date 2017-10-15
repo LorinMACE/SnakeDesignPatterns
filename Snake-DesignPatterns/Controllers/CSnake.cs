@@ -40,18 +40,20 @@ namespace Snake_DesignPatterns.Controllers
             Tuple<int, int> NewPosition = new Tuple<int, int>(newX,newY);
 
             //Check for the intern events (Collisions, GameOver, etc...)
-            if (newX < 0 || newY < 0 || newX > Game.Map.Width || newY > Game.Map.Height)
+            if (newX < 0 || newY < 0 || newX > Game.Map.Width || newY > Game.Map.Height || Snake.Nblife.Equals(0))
             {
                 throw new NotImplementedException();
             }
 
             //Check for collision with itself
-            foreach (var element in Snake.snakebody)
+            if (Snake.snakebody.Contains(new Tuple<int,int>(newX,newY)))
             {
-                if (element.Item1 == newX && element.Item2 == newY)
+                Snake.Nblife--;
+                while (!Snake.snakebody.Last.Value.Equals(new Tuple<int, int>(newX, newY)))
                 {
-                    throw new NotImplementedException();
+                    Snake.snakebody.RemoveLast();
                 }
+
             }
 
             //We are OK => Go forward

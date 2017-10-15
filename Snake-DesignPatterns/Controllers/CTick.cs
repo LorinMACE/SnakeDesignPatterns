@@ -26,7 +26,7 @@ namespace Snake_DesignPatterns.Controllers
         Thread worker;
         public CTick()
         {
-            Speed = 1000;
+            Speed = 250;
             worker = new Thread(work);
         }
 
