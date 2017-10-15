@@ -24,10 +24,10 @@ namespace Snake_DesignPatterns.Views
         public static void PrintHitTheWall(int Score, int Lifes)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.SetCursorPosition(30, 20);
+            Console.SetCursorPosition(30, 21);
             Console.WriteLine(" The Snake Hit the wall and DIED .");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.SetCursorPosition(30, 21);
+            Console.SetCursorPosition(30, 22);
             Console.WriteLine("Your Score is : " + Score);
 
 
