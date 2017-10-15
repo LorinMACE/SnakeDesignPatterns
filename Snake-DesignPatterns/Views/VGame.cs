@@ -39,7 +39,7 @@ namespace Snake_DesignPatterns.Views
                 Console.WriteLine(outputline);
              }
 
-            printWall(height+10, width+2, Score, Lifes);
+            printWall(height+5, width+2, Score, Lifes);
 
 
         }
