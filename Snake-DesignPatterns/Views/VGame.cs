@@ -26,17 +26,71 @@ namespace Snake_DesignPatterns.Views
          */
         public static void Print(CellTypes[,] gameBoard, int height, int width, int Score, int Lifes)
         {
-            for (int i = 0; i < height; i++)
-            {
-                String outputline = "";
-                for (int j = 0; j < width; j++)
-                {
-                    outputline = outputline + cellsbind[gameBoard[j,i]];
-                }
-                Console.WriteLine(outputline);
-            }
+
+            // C'est le bout de code qu'a écrit laurin  //
+
+
+            /* for (int i = 0; i < height; i++)
+             {
+                 String outputline = "";
+                 for (int j = 0; j < width; j++)
+                 {
+                     outputline = outputline + cellsbind[gameBoard[j,i]];
+                 }
+                 Console.WriteLine(outputline);
+             }*/
+
+            printWall(height, width, Score, Lifes);
+
 
         }
 
+        public static void printWall(int height, int width, int score, int lifes)
+        {
+
+            char wallChar = '#';
+
+            //dessiner les deux les murs verticaux
+            for (int i = 1; i < height; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.SetCursorPosition(1, i);
+                Console.Write(wallChar);
+                Console.SetCursorPosition(width, i);
+                Console.Write(wallChar);
+            }
+            //dessiner la ligne qui sépare Score de Life
+            for (int k = 1; k < 4; k++)
+            {
+                Console.SetCursorPosition(width / 2, k);
+                Console.Write(wallChar);
+            }
+            //Affichage du score et de Lifes
+            Console.SetCursorPosition(2, 2);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("    SCORE :  " + score);
+            Console.SetCursorPosition(54, 2);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Life : " + lifes);
+
+            //dessiner les deux les murs horizontaux
+            for (int j = 1; j < width; j++)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.SetCursorPosition(j, 1);
+                Console.Write(wallChar);
+                Console.SetCursorPosition(j, 4);
+                Console.Write(wallChar);
+                Console.SetCursorPosition(j, height);
+                Console.Write(wallChar);
+
+            }
+
+
+
+
+        }
     }
+
+}
 }
