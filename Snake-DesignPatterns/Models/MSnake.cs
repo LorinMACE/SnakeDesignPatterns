@@ -24,7 +24,7 @@ namespace Snake_DesignPatterns.Models
         //liste contient des cases avec x et y, une case est un tuple de deux int
         private Tuple<int, int> tuple;
 
-        public LinkedList<Tuple<int, int>> snakebody;
+        public LinkedList<Tuple<int, int>> snakebody { get; }
 
         public int Nblife { get => nblife; set => nblife = value; }
 
