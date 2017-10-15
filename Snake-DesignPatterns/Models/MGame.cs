@@ -43,12 +43,34 @@ namespace Snake_DesignPatterns.Models
 
         public void GenerateFruit()
         {
+
             //pour générer randomly deux entiers, qui seront un tuple
             Random rdn = new Random();
 
-            //générer le random entre 1 et 19 pour abscisse et 1 et 14 pour ordonnees
-            int rdnx = rdn.Next(1, Map.Width - 1);
-            int rdny = rdn.Next(1, Map.Height - 1);
+            //Ici rayon de 3 autour de la TETE du serpent
+            List<int> excludedX = Enumerable.Range(Snake.snakebody.First.Value.Item1 - 3, 6).ToList();
+            List<int> excludedY = Enumerable.Range(Snake.snakebody.First.Value.Item2 - 3, 6).ToList();
+
+            //Exclusion du corps
+            foreach(Tuple<int,int> partBody in Snake.snakebody)
+            {
+                excludedX.Add(partBody.Item1);
+                excludedY.Add(partBody.Item2);
+            }
+
+            int rdnx;
+            //générer le random entre 1 et 29 pour abscisse et 1 et 14 pour ordonnees
+            //on regenere le rnd si il est dans un rayon de 3 autour de la tete du serpent
+            do
+            {
+                rdnx = rdn.Next(1, Map.Width - 1);
+            } while (excludedX.Contains(rdnx));
+            
+            int rdny;
+            do
+            {
+                rdny = rdn.Next(1, Map.Height - 1);
+            } while(excludedY.Contains(rdny));
 
             Tuple<int, int> posFruit = new Tuple<int, int>(rdnx, rdny);
 

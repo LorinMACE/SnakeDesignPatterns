@@ -26,6 +26,7 @@ namespace Snake_DesignPatterns.Views
          */
         public static void Print(CellTypes[,] gameBoard, int height, int width, int Score, int Lifes)
         {
+            Console.Clear();
             for (int i = 0; i < height; i++)
             {
                 String outputline = "";
