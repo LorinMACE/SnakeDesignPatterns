@@ -17,10 +17,10 @@ namespace Snake_DesignPatterns.Views
             FeuArtifice = new Thread(new ThreadStart(ThreadFeu));
             FeuArtifice.Start();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.SetCursorPosition(30, 20);
-            Console.WriteLine(" The Snake Hit his Body and DIED .");
+            Console.SetCursorPosition(2, 8);
+            Console.WriteLine(" The Snake Hit his Body & DIED .");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.SetCursorPosition(30, 21);
+            Console.SetCursorPosition(2, 10);
             Console.WriteLine("Your Score is : " + Score);
         }
 
@@ -33,10 +33,10 @@ namespace Snake_DesignPatterns.Views
             FeuArtifice.Start();
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.SetCursorPosition(8, 3);
-            Console.WriteLine(" The Snake Hit the wall and DIED .");
+            Console.SetCursorPosition(2, 8);
+            Console.WriteLine(" The Snake Hit the wall & DIED .");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.SetCursorPosition(8, 4);
+            Console.SetCursorPosition(2, 10);
             Console.WriteLine("Your Score is : " + Score);
 
         }
