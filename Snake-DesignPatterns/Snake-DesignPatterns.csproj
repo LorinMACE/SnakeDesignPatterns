@@ -63,6 +63,7 @@
     <Compile Include="Views\VGame.cs" />
     <Compile Include="Views\VGameOver.cs" />
     <Compile Include="Views\VInput.cs" />
+    <Compile Include="Views\VPause.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
