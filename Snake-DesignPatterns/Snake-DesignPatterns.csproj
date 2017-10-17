@@ -50,9 +50,11 @@
     <Compile Include="Controllers\Events\EventManager.cs" />
     <Compile Include="Controllers\Events\EventTypes.cs" />
     <Compile Include="Controllers\Events\IEvent.cs" />
+    <Compile Include="Controllers\Strategies\GameContext.cs" />
     <Compile Include="Controllers\Strategies\GameOverStrategy.cs" />
     <Compile Include="Controllers\Strategies\GamePausedStrategy.cs" />
     <Compile Include="Controllers\Strategies\GameRunStrategy.cs" />
+    <Compile Include="Controllers\Strategies\GameStrategy.cs" />
     <Compile Include="Controllers\Strategies\IGameStrategy.cs" />
     <Compile Include="Models\MFruit.cs" />
     <Compile Include="Models\MGame.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="Views\VGame.cs" />
     <Compile Include="Views\VGameOver.cs" />
     <Compile Include="Views\VInput.cs" />
+    <Compile Include="Views\VPause.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

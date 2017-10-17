@@ -8,9 +8,10 @@ namespace Snake_DesignPatterns.Controllers.Strategies
 {
     class GamePausedStrategy : IGameStrategy
     {
-        public bool RunInputStrategy()
+        public bool Run()
         {
-            throw new NotImplementedException();
+            CGame.PrintGameBoard();
+            return true;
         }
     }
 }

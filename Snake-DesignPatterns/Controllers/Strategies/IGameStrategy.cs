@@ -8,6 +8,6 @@ namespace Snake_DesignPatterns.Controllers.Strategies
 {
     interface IGameStrategy
     {
-        bool RunInputStrategy();
+        bool Run();
     }
 }

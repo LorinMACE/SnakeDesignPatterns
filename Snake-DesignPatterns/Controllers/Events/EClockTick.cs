@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Snake_DesignPatterns.Controllers.Strategies;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,8 @@ namespace Snake_DesignPatterns.Controllers.Events
     {
         public bool Trigger()
         {
-            //On tick, just update the snake
-            CSnake.Move();
-            CGame.PrintGameBoard();
-            return true;
+            //On tick, execute game strategy
+            return GameStrategy.Instance.LaunchStrategy();
         }
     }
 }

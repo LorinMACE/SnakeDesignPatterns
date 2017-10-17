@@ -30,8 +30,6 @@ namespace Snake_DesignPatterns.Views
             Console.SetCursorPosition(30, 22);
             Console.WriteLine("Your Score is : " + Score);
 
-
-
         }
 
     }
