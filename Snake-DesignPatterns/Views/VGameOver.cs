@@ -33,10 +33,10 @@ namespace Snake_DesignPatterns.Views
             FeuArtifice.Start();
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.SetCursorPosition(30, 21);
+            Console.SetCursorPosition(8, 3);
             Console.WriteLine(" The Snake Hit the wall and DIED .");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.SetCursorPosition(30, 22);
+            Console.SetCursorPosition(8, 4);
             Console.WriteLine("Your Score is : " + Score);
 
         }
