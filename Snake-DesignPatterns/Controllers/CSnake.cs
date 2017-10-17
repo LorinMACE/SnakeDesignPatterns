@@ -1,4 +1,5 @@
 ﻿using Snake_DesignPatterns.Controllers.Events;
+using Snake_DesignPatterns.Controllers.Strategies;
 using Snake_DesignPatterns.Models;
 using System;
 using System.Collections.Generic;
@@ -40,15 +41,26 @@ namespace Snake_DesignPatterns.Controllers
             Tuple<int, int> NewPosition = new Tuple<int, int>(newX,newY);
 
             //Check for the intern events (Collisions, GameOver, etc...)
-            if (newX < 0 || newY < 0 || newX > Game.Map.Width || newY > Game.Map.Height || Snake.Nblife.Equals(0))
+            if (newX < 0 || newY < 0 || newX >= Game.Map.Width || newY >= Game.Map.Height)
             {
-                throw new NotImplementedException();
+                GameContext.Instance.IsOver = true;
+                GameContext.Instance.HasHitTheWall = true;
+                return;
             }
 
             //Check for collision with itself
             if (Snake.snakebody.Contains(new Tuple<int,int>(newX,newY)))
             {
                 Snake.Nblife--;
+
+                //Check for remaining number of lifes
+                if (Snake.Nblife.Equals(0))
+                {
+                    GameContext.Instance.IsOver = true;
+                    return;
+                }
+
+                //Remove half of snake
                 while (!Snake.snakebody.Last.Value.Equals(new Tuple<int, int>(newX, newY)))
                 {
                     Snake.snakebody.RemoveLast();

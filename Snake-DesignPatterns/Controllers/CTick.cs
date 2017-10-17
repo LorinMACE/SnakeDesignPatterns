@@ -22,11 +22,24 @@ namespace Snake_DesignPatterns.Controllers
 
         private volatile bool shouldStop;
         public volatile int Speed;
+        //We count 10 ticks and we accelerate the snake
+        private int count;
+
+        public int Count { get => count; }
+
+        //Method to re-initialize the Speed
+        public bool SpeedInit()
+        {
+            count = 0;
+            return true;
+        }
 
         Thread worker;
         public CTick()
         {
+            //We need  to reduce the tick to highten the speed
             Speed = 250;
+            count = 0;
             worker = new Thread(work);
         }
 
@@ -52,6 +65,16 @@ namespace Snake_DesignPatterns.Controllers
             {
                 //Wait 1 seconds and send a Tick
                 Thread.Sleep(Speed);
+
+                //each count=30*count(30,60,90....), we accelerate the snake, and if Speed = 40, we won't accelerate anymore (enough)
+                if (count.Equals(30 * count) || ((Speed - 20).Equals(20)))
+                {
+                    Speed = Speed - 20;
+                    count = 0;
+                }
+
+                //modify the speed using the count
+                count++;
                 EventManager.Instance.TriggerEvent(Event.ClockTick);
             }
         }

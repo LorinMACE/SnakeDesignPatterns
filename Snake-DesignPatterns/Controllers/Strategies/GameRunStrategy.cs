@@ -8,9 +8,11 @@ namespace Snake_DesignPatterns.Controllers.Strategies
 {
     class GameRunStrategy : IGameStrategy
     {
-        public bool RunInputStrategy()
+        public bool Run()
         {
-            throw new NotImplementedException();
+            CSnake.Move();
+            CGame.PrintGameBoard();
+            return true;
         }
     }
 }
