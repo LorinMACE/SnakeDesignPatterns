@@ -1,82 +1,82 @@
 ﻿using Snake_DesignPatterns.Controllers.Events;
+using System;
+using System.Diagnostics;
 using System.Threading;
 
 namespace Snake_DesignPatterns.Controllers
 {
     class CTick
     {
-        //Create a singleton of CTick()
-        private static CTick instance;
-        public static CTick Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new CTick();
-                }
-                return instance;
-            }
-        }
-
-
-        private volatile bool shouldStop;
-        public volatile int Speed;
-        //We count 10 ticks and we accelerate the snake
+        private Thread worker;
+        private Mutex WorkingMutex;
         private int count;
+        private static bool pauseWorker = false;
+        public volatile int Speed;
 
-        public int Count { get => count; }
+        public CTick()
+        {
+            worker = new Thread(work);
+            WorkingMutex = new Mutex();
+            count = 0;
+            Speed = 250;
+        }
+        
+        
 
         //Method to re-initialize the Speed
         public bool SpeedInit()
         {
             count = 0;
-            return true;
-        }
-
-        Thread worker;
-        public CTick()
-        {
-            //We need  to reduce the tick to highten the speed
             Speed = 250;
-            count = 0;
-            worker = new Thread(work);
+            return true;
         }
 
         public void Start()
         {
-            //Start only if not started
-            if (!worker.IsAlive)
+            worker.Start();
+        }
+
+        public void Restart()
+        {
+            lock (WorkingMutex)
             {
-                shouldStop = false;
-                worker.Start();
+                pauseWorker = false;
             }
+            
         }
 
         public void Stop()
         {
-            shouldStop = true;
+            lock (WorkingMutex)
+            {
+                pauseWorker = true;
+            }
         }
 
         // This method will be called when the thread is started.
         private void work()
         {
-            while (!shouldStop)
+            while (true)
             {
                 //Wait 1 seconds and send a Tick
                 Thread.Sleep(Speed);
 
-                //each count=30*count(30,60,90....), we accelerate the snake, and if Speed = 40, we won't accelerate anymore (enough)
-                if (count.Equals(30 * count) || ((Speed - 20).Equals(20)))
+                //Mutex after
+                if (count.Equals(30*count) || ((Speed - 20).Equals(20)))
                 {
                     Speed = Speed - 20;
                     count = 0;
                 }
 
-                //modify the speed using the count
                 count++;
-                EventManager.Instance.TriggerEvent(Event.ClockTick);
+
+                lock (WorkingMutex)
+                {
+                    if (!pauseWorker)
+                        Snake.EventManager.TriggerEvent(Event.ClockTick);
+                }
             }
+
         }
     }
 }
