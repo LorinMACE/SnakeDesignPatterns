@@ -14,6 +14,7 @@ namespace Snake_DesignPatterns
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.Unicode;
 
             //Starts a new game
             CGame.NewGame();

@@ -56,6 +56,10 @@
     <Compile Include="Controllers\Strategies\GameRunStrategy.cs" />
     <Compile Include="Controllers\Strategies\GameStrategy.cs" />
     <Compile Include="Controllers\Strategies\IGameStrategy.cs" />
+    <Compile Include="Models\FruitLifeUp.cs" />
+    <Compile Include="Models\FruitSpeedDown.cs" />
+    <Compile Include="Models\FruitSpeedUp.cs" />
+    <Compile Include="Models\IFruitEffect.cs" />
     <Compile Include="Models\MFruit.cs" />
     <Compile Include="Models\MGame.cs" />
     <Compile Include="Models\MMap.cs" />

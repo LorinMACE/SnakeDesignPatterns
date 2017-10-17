@@ -77,7 +77,10 @@ namespace Snake_DesignPatterns.Controllers
 
             //If there is no fruit, we remove the last part of the snake
             if (FruitInCase)
+            {
+                Game.Fruit.GetTypeFruit.Effect();
                 Game.GenerateFruit();
+            } 
             else
                 Snake.snakebody.RemoveLast();
         }
