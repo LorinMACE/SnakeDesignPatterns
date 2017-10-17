@@ -21,7 +21,7 @@ namespace Snake_DesignPatterns.Views
             { CellTypes.Fruit,'F'},
             { CellTypes.FruitLifeUp, (char)0x2665},
             { CellTypes.FruitSpeedUp, (char)0x2660},
-            { CellTypes.FruitSpeedDown, (char)0x2660}
+            { CellTypes.FruitSpeedDown, (char)0x2666}
             };
         /*
          * Gameboard: An array with a dimension MapHeight*MapWidth, filled with Cells
@@ -33,13 +33,33 @@ namespace Snake_DesignPatterns.Views
             
             for (int i = 0; i < height; i++)
              {
-                 String outputline = "";
-                 for (int j = 0; j < width; j++)
-                 {
-                     outputline = outputline + cellsbind[gameBoard[j,i]];
-                 }
-                Console.SetCursorPosition(2, i+5);
-                Console.WriteLine(outputline);
+                for (int j = 0; j < width; j++)
+                {
+                    Console.CursorVisible = false;
+                    Console.SetCursorPosition(2 + j, i + 5);
+                    CellTypes cell = gameBoard[j, i];
+                    
+                    switch (cell)
+                    {
+                        case CellTypes.FruitLifeUp:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            break;
+                        case CellTypes.FruitSpeedUp:
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            break;
+                        case CellTypes.FruitSpeedDown:
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.White;
+                            break;
+                    }
+                    Console.WriteLine(cellsbind[cell]);
+                }
+                
+                
+                
+                
              }
 
             printWall(height+5, width+2, Score, Lifes);

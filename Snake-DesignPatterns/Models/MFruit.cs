@@ -23,7 +23,7 @@ namespace Snake_DesignPatterns.Models
         {
             //random selection of the typeFruit
             Random rdn = new Random();
-            int RdnType = rdn.Next(1, 3);
+            int RdnType = rdn.Next(1, 4);
             
             switch (RdnType)
             {
