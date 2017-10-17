@@ -21,7 +21,7 @@ namespace Snake_DesignPatterns.Models
 
         public bool Effect()
         {
-            CTick.Instance.Speed = CTick.Instance.Speed + speed;
+            Snake.TickThread.Speed = Snake.TickThread.Speed + speed;
             return true;
         }
     }
