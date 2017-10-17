@@ -33,13 +33,27 @@ namespace Snake_DesignPatterns.Views
             
             for (int i = 0; i < height; i++)
              {
-                 String outputline = "";
-                 for (int j = 0; j < width; j++)
-                 {
-                     outputline = outputline + cellsbind[gameBoard[j,i]];
-                 }
-                Console.SetCursorPosition(2, i+5);
-                Console.WriteLine(outputline);
+                for (int j = 0; j < width; j++)
+                {
+                    Console.SetCursorPosition(2 + j, i + 5);
+                    CellTypes cell = gameBoard[j, i];
+                    if (cell is CellTypes.FruitLifeUp) {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }
+                    if (cell is CellTypes.FruitSpeedUp)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    if (cell is CellTypes.FruitSpeedDown)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                    }
+                    Console.WriteLine(cellsbind[cell]);
+                }
+                
+                
+                
+                
              }
 
             printWall(height+5, width+2, Score, Lifes);
