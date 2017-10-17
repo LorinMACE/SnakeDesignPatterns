@@ -21,7 +21,20 @@ namespace Snake_DesignPatterns.Controllers
 
             //Print the fruit
             int fruitX = Game.Fruit.Position.Item1; int fruitY = Game.Fruit.Position.Item2;
-            GameBoard[fruitX, fruitY] = CellTypes.Fruit;
+
+            if (Game.Fruit.GetTypeFruit is FruitLifeUp)
+            {
+                GameBoard[fruitX, fruitY] = CellTypes.FruitLifeUp;
+            }
+            if (Game.Fruit.GetTypeFruit is FruitSpeedUp)
+            {
+                GameBoard[fruitX, fruitY] = CellTypes.FruitSpeedUp;
+            }
+            if (Game.Fruit.GetTypeFruit is FruitSpeedDown)
+            {
+                GameBoard[fruitX, fruitY] = CellTypes.FruitSpeedDown;
+            }
+            //GameBoard[fruitX, fruitY] = CellTypes.Fruit;
 
             bool first = true;
             //Print the snake in the gameboard

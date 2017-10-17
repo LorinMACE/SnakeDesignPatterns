@@ -20,9 +20,21 @@ namespace Snake_DesignPatterns.Controllers
         
         private static bool pauseWorker = false;
 
-        public void Start()
+        //Method to re-initialize the Speed
+        public bool SpeedInit()
         {
-            worker.Start();
+            count = 0;
+            return true;
+        }
+
+        private volatile bool shouldStop;
+        public volatile int Speed;
+
+        Thread worker;
+        public CTick()
+        {
+            Speed = 250;
+            worker = new Thread(work);
         }
 
         public void Restart()
@@ -49,12 +61,8 @@ namespace Snake_DesignPatterns.Controllers
             {
                 count++;
                 //Wait 1 seconds and send a Tick
-                Thread.Sleep(250);
-                lock (WorkingMutex)
-                {
-                    if (!pauseWorker)
-                        Snake.EventManager.TriggerEvent(Event.ClockTick);
-                }
+                Thread.Sleep(Speed);
+                EventManager.Instance.TriggerEvent(Event.ClockTick);
             }
 
         }

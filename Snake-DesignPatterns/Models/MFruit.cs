@@ -9,6 +9,10 @@ namespace Snake_DesignPatterns.Models
 
     class MFruit
     {
+        //Chaque fruit a un type
+        private IFruitEffect typeFruit;
+        public IFruitEffect GetTypeFruit { get => typeFruit; }
+
         private Tuple<int,int> position;
         
         public Tuple<int, int> Position { get => position; set => position = value; }
@@ -17,6 +21,22 @@ namespace Snake_DesignPatterns.Models
         //randomly la position du fruit
         public MFruit(Tuple<int, int> pos)
         {
+            //random selection of the typeFruit
+            Random rdn = new Random();
+            int RdnType = rdn.Next(1, 3);
+            
+            switch (RdnType)
+            {
+                case 1:
+                    typeFruit = new FruitLifeUp();
+                    break;
+                case 2:
+                    typeFruit = new FruitSpeedUp();
+                    break;
+                case 3:
+                    typeFruit = new FruitSpeedDown();
+                    break;
+            }
             position = pos;
         }
     }

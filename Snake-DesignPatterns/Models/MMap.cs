@@ -15,7 +15,10 @@ namespace Snake_DesignPatterns.Models
         SnakeHeadLeft,
         SnakeHeadRight,
         SnakeBody,
-        Fruit
+        Fruit,
+        FruitLifeUp,
+        FruitSpeedDown,
+        FruitSpeedUp
     };
 
     class MMap

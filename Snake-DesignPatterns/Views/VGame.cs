@@ -9,6 +9,7 @@ namespace Snake_DesignPatterns.Views
 {
     static class VGame
     {
+        
         public static Dictionary<CellTypes, Char> cellsbind = new Dictionary<Models.CellTypes, Char>() {
             { CellTypes.Empty,' '},
             { CellTypes.Edge,'X'},
@@ -17,7 +18,10 @@ namespace Snake_DesignPatterns.Views
             { CellTypes.SnakeHeadLeft,'<'},
             { CellTypes.SnakeHeadRight,'>'},
             { CellTypes.SnakeBody,'o'},
-            { CellTypes.Fruit,'F'}
+            { CellTypes.Fruit,'F'},
+            { CellTypes.FruitLifeUp, (char)0x2665},
+            { CellTypes.FruitSpeedUp, (char)0x2660},
+            { CellTypes.FruitSpeedDown, (char)0x2660}
             };
         /*
          * Gameboard: An array with a dimension MapHeight*MapWidth, filled with Cells
@@ -26,10 +30,8 @@ namespace Snake_DesignPatterns.Views
          */
         public static void Print(CellTypes[,] gameBoard, int height, int width, int Score, int Lifes)
         {
-
-
-
-             for (int i = 0; i < height; i++)
+            
+            for (int i = 0; i < height; i++)
              {
                  String outputline = "";
                  for (int j = 0; j < width; j++)

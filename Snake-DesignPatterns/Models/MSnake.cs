@@ -19,7 +19,7 @@ namespace Snake_DesignPatterns.Models
         //volatile pour que ce soit accessible par plusieurs threads en meme temps
         public volatile SnakeOrientation Orientation;
 
-        private int nblife;
+        private static int nblife;
 
         //liste contient des cases avec x et y, une case est un tuple de deux int
         private Tuple<int, int> tuple;

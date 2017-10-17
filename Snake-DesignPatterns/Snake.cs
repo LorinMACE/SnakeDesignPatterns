@@ -18,6 +18,7 @@ namespace Snake_DesignPatterns
 
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.Unicode;
             EventManager = new EventManager();
             TickThread = new CTick();
             InputThread = new VInput();
@@ -27,6 +28,7 @@ namespace Snake_DesignPatterns
 
             //Start the ticks trigger thread
             TickThread.Start();
+
 
             //Starts a new game
             CGame.NewGame();
