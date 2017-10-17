@@ -18,28 +18,14 @@ namespace Snake_DesignPatterns.Controllers.Events
         private Dictionary<Event, List<IEvent>> listeners;
 
         // Block events to happen in the same time
-        Mutex EventMutex = new Mutex();
+        Mutex EventMutex;
 
         //Constructor
         public EventManager()
         {
             listeners = new Dictionary<Event, List<IEvent>>();
+            EventMutex = new Mutex();
         }
-
-        //Create a singleton of EventManager
-        private static EventManager instance;
-        public static EventManager Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new EventManager();
-                }
-                return instance;
-            }
-        }
-
 
         public void RegisterEvent(Event key,IEvent evenement)
         {
@@ -60,10 +46,6 @@ namespace Snake_DesignPatterns.Controllers.Events
             {
 
                 listeners[key].Remove(evenement);
-
-                //If the key's Observable list is empty, we remove it.
-                if (listeners[key].Count == 0)
-                    listeners.Remove(key);
 
             }
         }

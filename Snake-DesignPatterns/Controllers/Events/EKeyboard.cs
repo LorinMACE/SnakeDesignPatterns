@@ -1,4 +1,5 @@
-﻿using Snake_DesignPatterns.Models;
+﻿using Snake_DesignPatterns.Controllers.Strategies;
+using Snake_DesignPatterns.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,20 @@ namespace Snake_DesignPatterns.Controllers.Events
         public bool Trigger()
         {
             MGame.Instance.Snake.Orientation = SnakeOrientation.Right;
+            return true;
+        }
+    }
+
+    class KeyboardPaused : IEvent
+    {
+        public bool Trigger()
+        {
+
+            GameContext.Instance.IsPaused = !GameContext.Instance.IsPaused;
+            if (GameContext.Instance.IsPaused)
+                CGame.Pause();
+            else
+                CGame.UnPause();
             return true;
         }
     }

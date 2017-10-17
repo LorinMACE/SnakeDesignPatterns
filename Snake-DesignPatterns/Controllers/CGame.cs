@@ -62,33 +62,42 @@ namespace Snake_DesignPatterns.Controllers
         public static void NewGame()
         {
             MGame game = MGame.Instance;
-            EventManager mgr = EventManager.Instance;
+            EventManager mgr = Snake.EventManager;
 
             //Key events
             mgr.RegisterEvent(Event.KeyPressedDown,new KeyboardDown());
             mgr.RegisterEvent(Event.KeyPressedUp, new KeyboardUP());
             mgr.RegisterEvent(Event.KeyPressedLeft, new KeyboardLeft());
             mgr.RegisterEvent(Event.KeyPressedRight, new KeyboardRight());
+            mgr.RegisterEvent(Event.KeyPressedPause, new KeyboardPaused());
 
             //Register to clock ticks
             mgr.RegisterEvent(Event.ClockTick, new EClockTick());
 
-            //Starts the input trigger thread
-            VInput.Instance.Start();
+        }
 
-            //Start the ticks trigger thread
-            CTick.Instance.Start();
+        public static void Pause()
+        {
+            //Stop ticks for pause
+            Snake.TickThread.Stop();
+
+            EventManager mgr = Snake.EventManager;
+        }
+
+        public static void UnPause()
+        {
+            EventManager mgr = Snake.EventManager;
+
+            //Restart ticks after pause
+            Snake.TickThread.Restart();
         }
 
         public static void EndGame()
         {
             //We do not need the tick thread
-            CTick.Instance.Stop();
+            Snake.TickThread.Stop();
 
-            EventManager mgr = EventManager.Instance;
-
-            //UnRegister to clock ticks
-            mgr.UnRegisterEvent(Event.ClockTick, new EClockTick());
+            EventManager mgr = Snake.EventManager;
         }
     }
 }

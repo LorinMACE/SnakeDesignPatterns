@@ -1,59 +1,62 @@
 ﻿using Snake_DesignPatterns.Controllers.Events;
+using System;
+using System.Diagnostics;
 using System.Threading;
 
 namespace Snake_DesignPatterns.Controllers
 {
     class CTick
     {
-        //Create a singleton of CTick()
-        private static CTick instance;
-        public static CTick Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new CTick();
-                }
-                return instance;
-            }
-        }
+        private Thread worker;
+        private Mutex WorkingMutex;
+        private int count;
 
-
-        private volatile bool shouldStop;
-        public volatile int Speed;
-
-        Thread worker;
         public CTick()
         {
-            Speed = 250;
             worker = new Thread(work);
+            WorkingMutex = new Mutex();
+            count = 0;
         }
+        
+        private static bool pauseWorker = false;
 
         public void Start()
         {
-            //Start only if not started
-            if (!worker.IsAlive)
+            worker.Start();
+        }
+
+        public void Restart()
+        {
+            lock (WorkingMutex)
             {
-                shouldStop = false;
-                worker.Start();
+                pauseWorker = false;
             }
+            
         }
 
         public void Stop()
         {
-            shouldStop = true;
+            lock (WorkingMutex)
+            {
+                pauseWorker = true;
+            }
         }
 
         // This method will be called when the thread is started.
         private void work()
         {
-            while (!shouldStop)
+            while (true)
             {
+                count++;
                 //Wait 1 seconds and send a Tick
-                Thread.Sleep(Speed);
-                EventManager.Instance.TriggerEvent(Event.ClockTick);
+                Thread.Sleep(250);
+                lock (WorkingMutex)
+                {
+                    if (!pauseWorker)
+                        Snake.EventManager.TriggerEvent(Event.ClockTick);
+                }
             }
+
         }
     }
 }

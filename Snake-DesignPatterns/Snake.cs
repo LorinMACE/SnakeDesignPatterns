@@ -12,8 +12,21 @@ namespace Snake_DesignPatterns
 {
     class Snake
     {
+        public static CTick TickThread;
+        public static EventManager EventManager;
+        public static VInput InputThread;
+
         static void Main(string[] args)
         {
+            EventManager = new EventManager();
+            TickThread = new CTick();
+            InputThread = new VInput();
+
+            //Starts the input manager thread
+            InputThread.Start();
+
+            //Start the ticks trigger thread
+            TickThread.Start();
 
             //Starts a new game
             CGame.NewGame();

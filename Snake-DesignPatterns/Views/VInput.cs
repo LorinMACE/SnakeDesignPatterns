@@ -32,20 +32,6 @@ namespace Snake_DesignPatterns.Views
             {ConsoleKey.Spacebar,Event.KeyPressedPause}
         };
 
-        //Create a singleton of VInput()
-        private static VInput instance;
-        public static VInput Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new VInput();
-                }
-                return instance;
-            }
-        }
-
         Thread worker;
 
         public VInput()
@@ -79,7 +65,7 @@ namespace Snake_DesignPatterns.Views
                     Event e;
                     if (Binds.TryGetValue(Console.ReadKey(true).Key, out e))
                     {
-                        EventManager.Instance.TriggerEvent(e);
+                        Snake.EventManager.TriggerEvent(e);
                     }
                 }
                 Thread.Sleep(100);
