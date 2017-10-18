@@ -27,10 +27,12 @@ namespace Snake_DesignPatterns.Controllers
 
             if (Game.Fruit.GetTypeFruit is FruitLifeUp)
                 GameBoard[fruitX, fruitY] = CellTypes.FruitLifeUp;
-            if (Game.Fruit.GetTypeFruit is FruitSpeedUp)
+            else if (Game.Fruit.GetTypeFruit is FruitSpeedUp)
                 GameBoard[fruitX, fruitY] = CellTypes.FruitSpeedUp;
-            if (Game.Fruit.GetTypeFruit is FruitSpeedDown)
+            else if (Game.Fruit.GetTypeFruit is FruitSpeedDown)
                 GameBoard[fruitX, fruitY] = CellTypes.FruitSpeedDown;
+            else
+                GameBoard[fruitX, fruitY] = CellTypes.Fruit;
 
             //GameBoard[fruitX, fruitY] = CellTypes.Fruit;
 
@@ -105,8 +107,6 @@ namespace Snake_DesignPatterns.Controllers
             mgr.UnRegisterEvent(Event.KeyPressedLeft);
             mgr.UnRegisterEvent(Event.KeyPressedRight);
 
-            //UnRegister to clock ticks
-            mgr.UnRegisterEvent(Event.ClockTick);
         }
 
         public static void UnPause()
@@ -118,10 +118,6 @@ namespace Snake_DesignPatterns.Controllers
             mgr.RegisterEvent(Event.KeyPressedUp, new KeyboardUP());
             mgr.RegisterEvent(Event.KeyPressedLeft, new KeyboardLeft());
             mgr.RegisterEvent(Event.KeyPressedRight, new KeyboardRight());
-            mgr.RegisterEvent(Event.KeyPressedPause, new KeyboardPaused());
-
-            //Register to clock ticks
-            mgr.RegisterEvent(Event.ClockTick, new EClockTick());
 
             //Restart ticks after pause
             Snake.TickThread.Restart();
@@ -141,11 +137,11 @@ namespace Snake_DesignPatterns.Controllers
             mgr.UnRegisterEvent(Event.KeyPressedRight);
             mgr.UnRegisterEvent(Event.KeyPressedPause);
 
-            //UnRegister to clock ticks
-            mgr.UnRegisterEvent(Event.ClockTick);
-
             //Register KeyPressed
             mgr.RegisterEvent(Event.KeyPressedRestart, new KeyboardRestart());
+
+            //Register to clock ticks
+            mgr.UnRegisterEvent(Event.ClockTick);
 
         }
 

@@ -24,7 +24,7 @@ namespace Snake_DesignPatterns.Views
             int k = 1;
             for (int i = 10; i < width; i += 20)
             {
-                for (int j = 5; j < height+10; j += 4)
+                for (int j = 5; j < height+5; j += 4)
                 {
 
                     Console.SetCursorPosition(i, j);

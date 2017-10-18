@@ -18,7 +18,7 @@ namespace Snake_DesignPatterns.Views
             { CellTypes.SnakeHeadLeft,'<'},
             { CellTypes.SnakeHeadRight,'>'},
             { CellTypes.SnakeBody,'o'},
-            { CellTypes.Fruit,'F'},
+            { CellTypes.Fruit, (char)0x2663},
             { CellTypes.FruitLifeUp, (char)0x2665},
             { CellTypes.FruitSpeedUp, (char)0x2660},
             { CellTypes.FruitSpeedDown, (char)0x2666}

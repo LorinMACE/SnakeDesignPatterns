@@ -58,6 +58,8 @@
     <Compile Include="Controllers\Strategies\GameStrategy.cs" />
     <Compile Include="Controllers\Strategies\IGameStrategy.cs" />
     <Compile Include="Models\DeathCause.cs" />
+    <Compile Include="Models\FactoryFruit.cs" />
+    <Compile Include="Models\Fruit.cs" />
     <Compile Include="Models\FruitLifeUp.cs" />
     <Compile Include="Models\FruitSpeedDown.cs" />
     <Compile Include="Models\FruitSpeedUp.cs" />

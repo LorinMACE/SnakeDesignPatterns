@@ -63,13 +63,14 @@ namespace Snake_DesignPatterns.Views
         {
             while (!shouldStop)
             {
-                while (!Console.KeyAvailable)
+                while (Console.KeyAvailable)
                 {
                     Event e;
                     if (Binds.TryGetValue(Console.ReadKey(true).Key, out e))
                     {
                         Snake.EventManager.TriggerEvent(e);
                     }
+
                 }
                 Thread.Sleep(100);
             }

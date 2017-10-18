@@ -86,7 +86,7 @@ namespace Snake_DesignPatterns.Views
                 Console.SetCursorPosition(x, y);
                 Console.ForegroundColor = listcolor[k];
 
-                if (gameBoard[x - 3, y - 5] == CellTypes.Empty && y!=8 && y !=10 && y!=18)
+                if (y!=8 && y !=10 && y!=18)
                     Console.WriteLine((char)0x002A);
 
                 Thread.Sleep(15);
@@ -105,7 +105,7 @@ namespace Snake_DesignPatterns.Views
                 Console.SetCursorPosition(x, y);
                 Console.ForegroundColor = listcolor[k];
 
-                if (gameBoard[x-3, y-5]==CellTypes.Empty && y != 8 && y != 10 && y != 18)
+                if (y != 8 && y != 10 && y != 18)
                     Console.WriteLine((char)0x002A);
 
                 Thread.Sleep(15);
