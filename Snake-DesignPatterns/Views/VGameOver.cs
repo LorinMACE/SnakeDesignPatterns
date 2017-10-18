@@ -26,8 +26,8 @@ namespace Snake_DesignPatterns.Views
                 {
                     //GameBoard[2,j] = CellTypes.Text;//il faut dire que ca contient qqch
                     gameBoard[j, 2] = CellTypes.Text;
-                    Console.SetCursorPosition(2, length - 4 + j );
-                    Console.Write(c);
+                    // Console.SetCursorPosition(2, length - 4 + j );
+                    //Console.Write(c);
                 }
             }
             return true;

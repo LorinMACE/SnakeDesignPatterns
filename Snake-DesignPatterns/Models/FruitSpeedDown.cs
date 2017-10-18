@@ -16,13 +16,13 @@ namespace Snake_DesignPatterns.Models
         public FruitSpeedDown()
         {
             nbLifeUp = 0;
-            speed = -40;
+            speed = 40;
         }
 
         public bool Effect()
         {
-            
-            Snake.TickThread.Speed = Snake.TickThread.Speed + speed;
+            if (Snake.TickThread.Speed < 250)
+                Snake.TickThread.Speed = Snake.TickThread.Speed + speed;
             
             return true;
         }

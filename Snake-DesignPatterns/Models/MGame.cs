@@ -30,11 +30,16 @@ namespace Snake_DesignPatterns.Models
 
         public MGame()
         {
+            NewGame();
+        }
+
+        public void NewGame()
+        {
             //Initialise all the gameboard here (all the others objects of the model)
-            
+
             Map = new MMap(15, 30);
 
-            Snake = new MSnake(3, Map.Width/2, Map.Height/2);
+            Snake = new MSnake(3, Map.Width / 2, Map.Height / 2);
             Snake.SnakeGrows(Snake.snakebody.Last.Value.Item1, Snake.snakebody.Last.Value.Item2 + 1);
             Snake.SnakeGrows(Snake.snakebody.Last.Value.Item1, Snake.snakebody.Last.Value.Item2 + 1);
             Snake.SnakeGrows(Snake.snakebody.Last.Value.Item1, Snake.snakebody.Last.Value.Item2 + 1);

@@ -32,5 +32,12 @@ namespace Snake_DesignPatterns.Controllers.Strategies
             IsOver = false ;
             HasHitTheWall = false ;
         }
+
+        public void Reset()
+        {
+            IsPaused = false;
+            IsOver = false;
+            HasHitTheWall = false;
+        }
     }
 }

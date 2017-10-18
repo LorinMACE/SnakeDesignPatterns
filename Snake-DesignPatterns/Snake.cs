@@ -16,6 +16,7 @@ namespace Snake_DesignPatterns
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.Unicode;
+
             EventManager = new EventManager();
             TickThread = new CTick();
             InputThread = new VInput();

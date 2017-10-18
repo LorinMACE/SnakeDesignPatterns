@@ -104,6 +104,9 @@ namespace Snake_DesignPatterns.Controllers
             mgr.UnRegisterEvent(Event.KeyPressedUp);
             mgr.UnRegisterEvent(Event.KeyPressedLeft);
             mgr.UnRegisterEvent(Event.KeyPressedRight);
+
+            //UnRegister to clock ticks
+            mgr.UnRegisterEvent(Event.ClockTick);
         }
 
         public static void UnPause()
@@ -116,6 +119,9 @@ namespace Snake_DesignPatterns.Controllers
             mgr.RegisterEvent(Event.KeyPressedLeft, new KeyboardLeft());
             mgr.RegisterEvent(Event.KeyPressedRight, new KeyboardRight());
             mgr.RegisterEvent(Event.KeyPressedPause, new KeyboardPaused());
+
+            //Register to clock ticks
+            mgr.RegisterEvent(Event.ClockTick, new EClockTick());
 
             //Restart ticks after pause
             Snake.TickThread.Restart();
@@ -135,19 +141,33 @@ namespace Snake_DesignPatterns.Controllers
             mgr.UnRegisterEvent(Event.KeyPressedRight);
             mgr.UnRegisterEvent(Event.KeyPressedPause);
 
+            //UnRegister to clock ticks
+            mgr.UnRegisterEvent(Event.ClockTick);
+
+            //Register KeyPressed
             mgr.RegisterEvent(Event.KeyPressedRestart, new KeyboardRestart());
 
         }
 
         public static void Restart()
         {
+            //Unregister enter key
             EventManager mgr = Snake.EventManager;
             mgr.UnRegisterEvent(Event.KeyPressedRestart);
 
+            //Reset game context
+            GameContext.Instance.Reset();
+
             //New Model
+            MGame.Instance.NewGame();
 
             //Restart and register
             NewGame();
+
+            //Reset Speed
+            Snake.TickThread.SpeedInit();
+
+            //Restart tick thread
             Snake.TickThread.Restart();
         }
     }
