@@ -14,21 +14,24 @@ namespace Snake_DesignPatterns.Views
 
         private static string msghitSelf = "The Snake Hit his Body & DIED.";
         private static string msghitWall = "The Snake Hit the wall & DIED.";
+        private static string msgScore = "Your Score is : ";
+        private static string msgRestart = "Press Enter to restart";
 
 
-        public static bool WriteGameBoard(string msg)
+        public static bool WriteGameBoard(string msg, int heightMsg)
         {
             int length = msg.Length;
+            int j = 0;
            
             foreach (char c in msg)
             {
-                for(int j=0; j<length; j++)
-                {
-                    //GameBoard[2,j] = CellTypes.Text;//il faut dire que ca contient qqch
-                    gameBoard[j, 2] = CellTypes.Text;
-                    Console.SetCursorPosition(2, length - 4 + j );
-                    Console.Write(c);
-                }
+                gameBoard[j, 2] = CellTypes.Text;
+                //We have to calculate the offset considering the length 
+                int offset = 32 - length; //30 + 2 for the total size, 30 gameboard and 2 for # 2 sides
+                Console.SetCursorPosition( j + offset/2 +1, heightMsg );
+                Console.Write(c);
+                j++;
+             
             }
             return true;
         }
@@ -39,23 +42,20 @@ namespace Snake_DesignPatterns.Views
 
             Thread FeuArtifice;
             gameBoard = GameBoard;
+            msgScore += Score;
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.SetCursorPosition(2, 8);
-
             if (cause == DeathCause.HitSelf)
-                //Console.WriteLine("The Snake Hit his Body & DIED.");
-                WriteGameBoard(msghitSelf);
+               
+                WriteGameBoard(msghitSelf, 8);
             else
-                WriteGameBoard(msghitWall);
-                //Console.WriteLine("The Snake Hit the wall & DIED.");
+                WriteGameBoard(msghitWall, 8);
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.SetCursorPosition(8, 10);
-            Console.WriteLine("Your Score is :  " + Score);
+            WriteGameBoard(msgScore, 10);
+
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetCursorPosition(6, 18);
-            Console.WriteLine("Press Enter to restart");
+            WriteGameBoard(msgRestart, 18);
 
             FeuArtifice = new Thread(new ThreadStart(ThreadFeu));
             FeuArtifice.Start();
