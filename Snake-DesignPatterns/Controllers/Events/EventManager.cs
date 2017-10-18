@@ -41,13 +41,10 @@ namespace Snake_DesignPatterns.Controllers.Events
 
         public void UnRegisterEvent(Event key, IEvent evenement)
         {
-            //Check if the event is present in the key list
-            if (listeners.ContainsKey(key) && listeners[key].Contains(evenement))
-            {
+            if (!listeners.ContainsKey(key))
+                return;
 
-                listeners[key].Remove(evenement);
-
-            }
+            listeners.Single(p => p.Key == key).Value.Remove(evenement);
         }
 
         public bool TriggerEvent(Event key)
