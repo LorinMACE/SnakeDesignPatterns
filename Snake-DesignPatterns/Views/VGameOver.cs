@@ -42,7 +42,6 @@ namespace Snake_DesignPatterns.Views
 
             Thread FeuArtifice;
             gameBoard = GameBoard;
-            msgScore += Score;
 
             Console.ForegroundColor = ConsoleColor.Red;
             if (cause == DeathCause.HitSelf)
@@ -52,7 +51,7 @@ namespace Snake_DesignPatterns.Views
                 WriteGameBoard(msghitWall, 8);
 
             Console.ForegroundColor = ConsoleColor.Green;
-            WriteGameBoard(msgScore, 10);
+            WriteGameBoard(msgScore+Score, 10);
 
             Console.ForegroundColor = ConsoleColor.White;
             WriteGameBoard(msgRestart, 18);
