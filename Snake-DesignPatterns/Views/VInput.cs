@@ -29,7 +29,10 @@ namespace Snake_DesignPatterns.Views
             {ConsoleKey.D,Event.KeyPressedRight},
 
             //Spacebar
-            {ConsoleKey.Spacebar,Event.KeyPressedPause}
+            {ConsoleKey.Spacebar,Event.KeyPressedPause},
+            
+            //Spacebar
+            {ConsoleKey.Enter,Event.KeyPressedRestart}
         };
 
         Thread worker;

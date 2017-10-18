@@ -1,6 +1,7 @@
 ﻿using Snake_DesignPatterns.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -39,12 +40,12 @@ namespace Snake_DesignPatterns.Controllers.Events
                 listeners[key].Add(evenement);
         }
 
-        public void UnRegisterEvent(Event key, IEvent evenement)
+        public void UnRegisterEvent(Event key)
         {
             if (!listeners.ContainsKey(key))
                 return;
 
-            listeners.Single(p => p.Key == key).Value.Remove(evenement);
+            listeners.Remove(key);
         }
 
         public bool TriggerEvent(Event key)

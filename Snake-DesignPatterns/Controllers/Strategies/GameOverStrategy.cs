@@ -12,9 +12,10 @@ namespace Snake_DesignPatterns.Controllers.Strategies
     {
         public bool Run()
         {
+            CGame.BuildGameboard();
             CGame.EndGame();
             CGame.PrintGameBoard();
-            VGameOver.PrintHitItSelf(MGame.Instance.getScore());
+            VGameOver.PrintHitItSelf(CGame.GameBoard,MGame.Instance.getScore());
             return true;
         }
     }
@@ -22,9 +23,10 @@ namespace Snake_DesignPatterns.Controllers.Strategies
     {
         public bool Run()
         {
+            CGame.BuildGameboard();
             CGame.EndGame();
             CGame.PrintGameBoard();
-            VGameOver.PrintHitTheWall(MGame.Instance.getScore(),MGame.Instance.Snake.Nblife);
+            VGameOver.PrintHitTheWall(CGame.GameBoard,MGame.Instance.getScore(),MGame.Instance.Snake.Nblife);
             return true;
         }
     }

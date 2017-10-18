@@ -47,6 +47,7 @@
     <Compile Include="Controllers\CTick.cs" />
     <Compile Include="Controllers\Events\EClockTick.cs" />
     <Compile Include="Controllers\Events\EKeyboard.cs" />
+    <Compile Include="Controllers\Events\ERestart.cs" />
     <Compile Include="Controllers\Events\EventManager.cs" />
     <Compile Include="Controllers\Events\EventTypes.cs" />
     <Compile Include="Controllers\Events\IEvent.cs" />

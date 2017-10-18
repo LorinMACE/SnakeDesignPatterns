@@ -12,11 +12,13 @@ namespace Snake_DesignPatterns.Controllers
 {
     static class CGame
     {
-        public static void PrintGameBoard()
+        public static CellTypes[,] GameBoard;
+
+        public static void BuildGameboard()
         {
             MGame Game = MGame.Instance;
 
-            CellTypes[,] GameBoard = new CellTypes[Game.Map.Width,Game.Map.Height];
+            GameBoard = new CellTypes[Game.Map.Width, Game.Map.Height];
             int score = Game.getScore();
             int lifes = Game.Snake.Nblife;
 
@@ -24,17 +26,12 @@ namespace Snake_DesignPatterns.Controllers
             int fruitX = Game.Fruit.Position.Item1; int fruitY = Game.Fruit.Position.Item2;
 
             if (Game.Fruit.GetTypeFruit is FruitLifeUp)
-            {
                 GameBoard[fruitX, fruitY] = CellTypes.FruitLifeUp;
-            }
             if (Game.Fruit.GetTypeFruit is FruitSpeedUp)
-            {
                 GameBoard[fruitX, fruitY] = CellTypes.FruitSpeedUp;
-            }
             if (Game.Fruit.GetTypeFruit is FruitSpeedDown)
-            {
                 GameBoard[fruitX, fruitY] = CellTypes.FruitSpeedDown;
-            }
+
             //GameBoard[fruitX, fruitY] = CellTypes.Fruit;
 
             bool first = true;
@@ -62,14 +59,20 @@ namespace Snake_DesignPatterns.Controllers
                             break;
                     }
                     first = false;
-                } else
+                }
+                else
                 {
                     GameBoard[bodypartX, bodypartY] = CellTypes.SnakeBody;
                 }
-                
-                
             }
+        }
 
+
+        public static void PrintGameBoard()
+        {
+            MGame Game = MGame.Instance;
+            int score = Game.getScore();
+            int lifes = Game.Snake.Nblife;
             VGame.Print(GameBoard, Game.Map.Height, Game.Map.Width,score, lifes);
         }
 
@@ -96,11 +99,23 @@ namespace Snake_DesignPatterns.Controllers
             Snake.TickThread.Stop();
 
             EventManager mgr = Snake.EventManager;
+            //Key events
+            mgr.UnRegisterEvent(Event.KeyPressedDown);
+            mgr.UnRegisterEvent(Event.KeyPressedUp);
+            mgr.UnRegisterEvent(Event.KeyPressedLeft);
+            mgr.UnRegisterEvent(Event.KeyPressedRight);
         }
 
         public static void UnPause()
         {
             EventManager mgr = Snake.EventManager;
+
+            //Key events
+            mgr.RegisterEvent(Event.KeyPressedDown, new KeyboardDown());
+            mgr.RegisterEvent(Event.KeyPressedUp, new KeyboardUP());
+            mgr.RegisterEvent(Event.KeyPressedLeft, new KeyboardLeft());
+            mgr.RegisterEvent(Event.KeyPressedRight, new KeyboardRight());
+            mgr.RegisterEvent(Event.KeyPressedPause, new KeyboardPaused());
 
             //Restart ticks after pause
             Snake.TickThread.Restart();
@@ -112,6 +127,28 @@ namespace Snake_DesignPatterns.Controllers
             Snake.TickThread.Stop();
 
             EventManager mgr = Snake.EventManager;
+
+            //Key events
+            mgr.UnRegisterEvent(Event.KeyPressedDown);
+            mgr.UnRegisterEvent(Event.KeyPressedUp);
+            mgr.UnRegisterEvent(Event.KeyPressedLeft);
+            mgr.UnRegisterEvent(Event.KeyPressedRight);
+            mgr.UnRegisterEvent(Event.KeyPressedPause);
+
+            mgr.RegisterEvent(Event.KeyPressedRestart, new KeyboardRestart());
+
+        }
+
+        public static void Restart()
+        {
+            EventManager mgr = Snake.EventManager;
+            mgr.UnRegisterEvent(Event.KeyPressedRestart);
+
+            //New Model
+
+            //Restart and register
+            NewGame();
+            Snake.TickThread.Restart();
         }
     }
 }

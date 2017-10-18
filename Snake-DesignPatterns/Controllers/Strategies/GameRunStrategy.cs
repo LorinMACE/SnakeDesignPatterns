@@ -11,6 +11,7 @@ namespace Snake_DesignPatterns.Controllers.Strategies
         public bool Run()
         {
             CSnake.Move();
+            CGame.BuildGameboard();
             CGame.PrintGameBoard();
             return true;
         }

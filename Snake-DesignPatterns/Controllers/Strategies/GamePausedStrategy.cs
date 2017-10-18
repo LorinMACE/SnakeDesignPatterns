@@ -12,6 +12,7 @@ namespace Snake_DesignPatterns.Controllers.Strategies
     {
         public bool Run()
         {
+            CGame.BuildGameboard();
             //Go to pause and stop clock tick
             CGame.Pause();
             CGame.PrintGameBoard();

@@ -55,4 +55,13 @@ namespace Snake_DesignPatterns.Controllers.Events
             return true;
         }
     }
+
+    class KeyboardRestart : IEvent
+    {
+        public bool Trigger()
+        {
+            CGame.Restart();
+            return true;
+        }
+    }
 }

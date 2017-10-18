@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using Snake_DesignPatterns.Models;
 
 namespace Snake_DesignPatterns.Views
 {
     static class VGameOver
     {
-        public static void PrintHitItSelf(int Score)
+        public static void PrintHitItSelf(CellTypes[,] GameBoard,int Score)
         {
             Thread FeuArtifice;
 
@@ -23,7 +24,7 @@ namespace Snake_DesignPatterns.Views
             Console.WriteLine("Your Score is : " + Score);
         }
 
-        public static void PrintHitTheWall(int Score, int Lifes)
+        public static void PrintHitTheWall(CellTypes[,] GameBoard,int Score, int Lifes)
         {
 
             Thread FeuArtifice;

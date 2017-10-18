@@ -13,6 +13,7 @@ namespace Snake_DesignPatterns.Controllers.Events
         KeyPressedLeft,
         KeyPressedRight,
         KeyPressedPause,
+        KeyPressedRestart,
         ClockTick
     };
 }
