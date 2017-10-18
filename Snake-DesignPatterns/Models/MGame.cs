@@ -59,7 +59,12 @@ namespace Snake_DesignPatterns.Models
             {
                 foreach (var y in excludedY)
                 {
-                    excluded.Add(new Tuple<int,int>(x,y));
+                    if (x >= 0 && y >= 0 && x < Map.Width && y < Map.Height)
+                    {
+                        Tuple<int, int> newTuple = new Tuple<int, int>(x, y);
+                        if (!excluded.Contains(newTuple))
+                            excluded.Add(newTuple);
+                    }
                 }
             }
 
@@ -69,8 +74,8 @@ namespace Snake_DesignPatterns.Models
             //on regenere le rnd si il est dans un rayon de 3 autour de la tete du serpent
             do
             {
-                rdnx = rdn.Next(1, Map.Width);
-                rdny = rdn.Next(1, Map.Height);
+                rdnx = rdn.Next(0, Map.Width);
+                rdny = rdn.Next(0, Map.Height);
             } while (excluded.Contains(new Tuple<int, int>(rdnx, rdny)));
  
             Tuple<int, int> posFruit = new Tuple<int, int>(rdnx, rdny);

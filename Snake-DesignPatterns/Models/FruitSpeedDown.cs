@@ -21,8 +21,8 @@ namespace Snake_DesignPatterns.Models
 
         public bool Effect()
         {
-            if (Snake.TickThread.Speed < 40)
-                Snake.TickThread.Speed = Snake.TickThread.Speed + speed;
+            
+            Snake.TickThread.Speed = Snake.TickThread.Speed + speed;
             
             return true;
         }

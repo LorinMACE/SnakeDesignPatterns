@@ -15,7 +15,7 @@ namespace Snake_DesignPatterns.Controllers.Strategies
             CGame.BuildGameboard();
             CGame.EndGame();
             CGame.PrintGameBoard();
-            VGameOver.PrintHitItSelf(CGame.GameBoard,MGame.Instance.getScore());
+            VGameOver.Print(CGame.GameBoard,MGame.Instance.getScore(),DeathCause.HitSelf);
             return true;
         }
     }
@@ -26,7 +26,7 @@ namespace Snake_DesignPatterns.Controllers.Strategies
             CGame.BuildGameboard();
             CGame.EndGame();
             CGame.PrintGameBoard();
-            VGameOver.PrintHitTheWall(CGame.GameBoard,MGame.Instance.getScore(),MGame.Instance.Snake.Nblife);
+            VGameOver.Print(CGame.GameBoard, MGame.Instance.getScore(), DeathCause.HitWall);
             return true;
         }
     }

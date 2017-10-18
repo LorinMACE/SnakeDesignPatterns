@@ -13,25 +13,7 @@ namespace Snake_DesignPatterns.Views
         private static CellTypes[,] gameBoard;
 
 
-        public static void PrintHitItSelf(CellTypes[,] GameBoard,int Score)
-        {
-            Thread FeuArtifice;
-            gameBoard = GameBoard;
-            FeuArtifice = new Thread(new ThreadStart(ThreadFeu));
-            FeuArtifice.Start();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.SetCursorPosition(2, 8);
-            Console.WriteLine("The Snake Hit his Body & DIED."); //32
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.SetCursorPosition(8, 10);
-            Console.WriteLine("Your Score is :  " + Score);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.SetCursorPosition(6, 18);
-            Console.WriteLine("Press Enter to restart");
-
-        }
-
-        public static void PrintHitTheWall(CellTypes[,] GameBoard,int Score, int Lifes)
+        public static void Print(CellTypes[,] GameBoard,int Score, DeathCause cause)
         {
 
             Thread FeuArtifice;
@@ -39,7 +21,12 @@ namespace Snake_DesignPatterns.Views
 
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(2, 8);
-            Console.WriteLine("The Snake Hit the wall & DIED.");
+
+            if (cause == DeathCause.HitSelf)
+                Console.WriteLine("The Snake Hit his Body & DIED."); //32
+            else
+                Console.WriteLine("The Snake Hit the wall & DIED.");
+
             Console.ForegroundColor = ConsoleColor.Green;
             Console.SetCursorPosition(8, 10);
             Console.WriteLine("Your Score is :  " + Score);
@@ -49,9 +36,6 @@ namespace Snake_DesignPatterns.Views
 
             FeuArtifice = new Thread(new ThreadStart(ThreadFeu));
             FeuArtifice.Start();
-
-           
-
         }
 
         public static void ThreadFeu()
