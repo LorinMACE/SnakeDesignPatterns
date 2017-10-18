@@ -21,10 +21,14 @@ namespace Snake_DesignPatterns.Views
             FeuArtifice.Start();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(2, 8);
-            Console.WriteLine("The Snake Hit his Body & DIED");
+            Console.WriteLine("The Snake Hit his Body & DIED."); //32
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.SetCursorPosition(2, 10);
-            Console.WriteLine("Your Score is : " + Score);
+            Console.SetCursorPosition(8, 10);
+            Console.WriteLine("Your Score is :  " + Score);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(6, 18);
+            Console.WriteLine("Press Enter to restart");
+
         }
 
         public static void PrintHitTheWall(CellTypes[,] GameBoard,int Score, int Lifes)
@@ -35,10 +39,13 @@ namespace Snake_DesignPatterns.Views
 
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(2, 8);
-            Console.WriteLine("The Snake Hit the wall & DIED");
+            Console.WriteLine("The Snake Hit the wall & DIED.");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.SetCursorPosition(2, 10);
-            Console.WriteLine("Your Score is : " + Score);
+            Console.SetCursorPosition(8, 10);
+            Console.WriteLine("Your Score is :  " + Score);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(6, 18);
+            Console.WriteLine("Press Enter to restart");
 
             FeuArtifice = new Thread(new ThreadStart(ThreadFeu));
             FeuArtifice.Start();
@@ -73,7 +80,7 @@ namespace Snake_DesignPatterns.Views
                 Console.SetCursorPosition(x, y);
                 Console.ForegroundColor = listcolor[k];
 
-                if (gameBoard[x - 3, y - 5] == CellTypes.Empty && y!=8 && y !=10)
+                if (gameBoard[x - 3, y - 5] == CellTypes.Empty && y!=8 && y !=10 && y!=18)
                     Console.WriteLine((char)0x002A);
 
                 Thread.Sleep(15);
@@ -92,7 +99,7 @@ namespace Snake_DesignPatterns.Views
                 Console.SetCursorPosition(x, y);
                 Console.ForegroundColor = listcolor[k];
 
-                if (gameBoard[x-3, y-5]==CellTypes.Empty && y != 8 && y != 10)
+                if (gameBoard[x-3, y-5]==CellTypes.Empty && y != 8 && y != 10 && y != 18)
                     Console.WriteLine((char)0x002A);
 
                 Thread.Sleep(15);
