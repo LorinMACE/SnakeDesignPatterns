@@ -39,7 +39,6 @@ namespace Snake_DesignPatterns
             {
                 foreach (string music in soundFile)
                 {
-                    Console.WriteLine(music);
                     sp.SoundLocation = music;
                     sp.PlaySync();
                 }
