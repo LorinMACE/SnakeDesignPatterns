@@ -10,15 +10,18 @@ namespace Snake_DesignPatterns.Views
 {
     static class VGameOver
     {
+        private static CellTypes[,] gameBoard;
+
+
         public static void PrintHitItSelf(CellTypes[,] GameBoard,int Score)
         {
             Thread FeuArtifice;
-
+            gameBoard = GameBoard;
             FeuArtifice = new Thread(new ThreadStart(ThreadFeu));
             FeuArtifice.Start();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(2, 8);
-            Console.WriteLine(" The Snake Hit his Body & DIED .");
+            Console.WriteLine("The Snake Hit his Body & DIED");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.SetCursorPosition(2, 10);
             Console.WriteLine("Your Score is : " + Score);
@@ -28,10 +31,11 @@ namespace Snake_DesignPatterns.Views
         {
 
             Thread FeuArtifice;
+            gameBoard = GameBoard;
 
-             Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(2, 8);
-            Console.WriteLine(" The Snake Hit the wall & DIED .");
+            Console.WriteLine("The Snake Hit the wall & DIED");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.SetCursorPosition(2, 10);
             Console.WriteLine("Your Score is : " + Score);
@@ -68,9 +72,9 @@ namespace Snake_DesignPatterns.Views
                 int y = aleatoire.Next(9, 14);
                 Console.SetCursorPosition(x, y);
                 Console.ForegroundColor = listcolor[k];
-    
-                
-                Console.WriteLine((char)0x002A);
+
+                if (gameBoard[x - 3, y - 5] == CellTypes.Empty && y!=8 && y !=10)
+                    Console.WriteLine((char)0x002A);
 
                 Thread.Sleep(15);
                 k++;
@@ -87,7 +91,9 @@ namespace Snake_DesignPatterns.Views
                 int y = aleatoire.Next(5, 20);
                 Console.SetCursorPosition(x, y);
                 Console.ForegroundColor = listcolor[k];
-                Console.WriteLine((char)0x002A);
+
+                if (gameBoard[x-3, y-5]==CellTypes.Empty && y != 8 && y != 10)
+                    Console.WriteLine((char)0x002A);
 
                 Thread.Sleep(15);
                 k++;
