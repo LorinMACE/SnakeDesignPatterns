@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,31 +48,31 @@ namespace Snake_DesignPatterns.Models
             //pour générer randomly deux entiers, qui seront un tuple
             Random rdn = new Random();
 
+            //Liste des cases exclues
+            List<Tuple<int, int>> excluded = Snake.snakebody.ToList();
+
             //Ici rayon de 3 autour de la TETE du serpent
             List<int> excludedX = Enumerable.Range(Snake.snakebody.First.Value.Item1 - 3, 6).ToList();
             List<int> excludedY = Enumerable.Range(Snake.snakebody.First.Value.Item2 - 3, 6).ToList();
 
-            //Exclusion du corps
-            foreach(Tuple<int,int> partBody in Snake.snakebody)
+            foreach (var x in excludedX)
             {
-                excludedX.Add(partBody.Item1);
-                excludedY.Add(partBody.Item2);
+                foreach (var y in excludedY)
+                {
+                    excluded.Add(new Tuple<int,int>(x,y));
+                }
             }
 
-            int rdnx;
+            int rdnx;int rdny;
+
             //générer le random entre 1 et 29 pour abscisse et 1 et 14 pour ordonnees
             //on regenere le rnd si il est dans un rayon de 3 autour de la tete du serpent
             do
             {
-                rdnx = rdn.Next(1, Map.Width - 1);
-            } while (excludedX.Contains(rdnx));
-            
-            int rdny;
-            do
-            {
-                rdny = rdn.Next(1, Map.Height - 1);
-            } while(excludedY.Contains(rdny));
-
+                rdnx = rdn.Next(1, Map.Width);
+                rdny = rdn.Next(1, Map.Height);
+            } while (excluded.Contains(new Tuple<int, int>(rdnx, rdny)));
+ 
             Tuple<int, int> posFruit = new Tuple<int, int>(rdnx, rdny);
 
             Fruit = new MFruit(posFruit);
