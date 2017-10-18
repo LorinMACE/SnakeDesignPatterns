@@ -72,7 +72,7 @@ namespace Snake_DesignPatterns.Controllers
             //We are OK => Go forward
             Snake.snakebody.AddFirst(new Tuple<int, int>(newX, newY));
 
-            Debug.WriteLine("NoFruit");
+            
             //Check if we are in the position of the fruit
             Tuple<int, int> positionFruit = MGame.Instance.Fruit.Position;
             bool FruitInCase = (newX == positionFruit.Item1 && newY == positionFruit.Item2);
@@ -80,7 +80,7 @@ namespace Snake_DesignPatterns.Controllers
             //If there is no fruit, we remove the last part of the snake
             if (FruitInCase)
             {
-                Debug.WriteLine("Fruit");
+                
                 Game.Fruit.GetTypeFruit.Effect();
                 Game.GenerateFruit();
             } 

@@ -12,7 +12,7 @@ namespace Snake_DesignPatterns.Controllers.Events
     {
         public bool Trigger()
         {
-            Debug.WriteLine("Tick");
+            
             //On tick, execute game strategy
             return GameStrategy.Instance.LaunchStrategy();
         }
