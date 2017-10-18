@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 
 namespace Snake_DesignPatterns.Views
 {
-    class VPause
+    static class VPause
     {
 
 
-        public static Dictionary<int, System.ConsoleColor> listcolor = new Dictionary<int, System.ConsoleColor>();
+        public static Dictionary<int, System.ConsoleColor> listcolor = new Dictionary<int, System.ConsoleColor>(){
+            { 1,ConsoleColor.Yellow },
+            { 2,ConsoleColor.Blue },
+            { 3,ConsoleColor.Green },
+            { 4,ConsoleColor.Magenta},
+            { 5,ConsoleColor.Cyan }
+        };
 
-        public void Print( int height, int width)
+        static public void Print( int height, int width)
         {
 
-            listcolor.Add(1, ConsoleColor.Yellow);
-            listcolor.Add(2, ConsoleColor.Blue);
-            listcolor.Add(3, ConsoleColor.Green);
-            listcolor.Add(4, ConsoleColor.Magenta);
-            listcolor.Add(5, ConsoleColor.Cyan);
-
             int k = 1;
-            for (int i = 4; i < width; i += 20)
+            for (int i = 10; i < width; i += 20)
             {
-                for (int j = 5; j < height; j += 5)
+                for (int j = 5; j < height+5; j += 4)
                 {
 
                     Console.SetCursorPosition(i, j);

@@ -1,4 +1,5 @@
 ﻿using Snake_DesignPatterns.Controllers.Events;
+using Snake_DesignPatterns.Controllers.Strategies;
 using Snake_DesignPatterns.Models;
 using Snake_DesignPatterns.Views;
 using System;

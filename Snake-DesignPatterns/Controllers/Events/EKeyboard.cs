@@ -50,9 +50,7 @@ namespace Snake_DesignPatterns.Controllers.Events
         {
 
             GameContext.Instance.IsPaused = !GameContext.Instance.IsPaused;
-            if (GameContext.Instance.IsPaused)
-                CGame.Pause();
-            else
+            if (!GameContext.Instance.IsPaused)
                 CGame.UnPause();
             return true;
         }

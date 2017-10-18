@@ -20,8 +20,6 @@ namespace Snake_DesignPatterns.Controllers
             count = 0;
             Speed = 250;
         }
-        
-        
 
         //Method to re-initialize the Speed
         public bool SpeedInit()
