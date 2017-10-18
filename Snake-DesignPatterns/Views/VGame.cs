@@ -63,7 +63,7 @@ namespace Snake_DesignPatterns.Views
              }
 
             printWall(height+5, width+2, Score, Lifes);
-
+            //printInstruction(height + 5, width + 2);
 
         }
 
@@ -103,6 +103,37 @@ namespace Snake_DesignPatterns.Views
                 Console.SetCursorPosition(j, 1);
                 Console.Write(wallChar);
                 Console.SetCursorPosition(j, 4);
+                Console.Write(wallChar);
+                Console.SetCursorPosition(j, height);
+                Console.Write(wallChar);
+
+            }
+
+
+
+
+        }
+        public static void printInstruction(int height, int width)
+        {
+
+            char wallChar = '+';
+
+            //dessiner les deux les murs verticaux
+            for (int i = 1; i <= height; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.SetCursorPosition(width, i);
+                Console.Write(wallChar);
+                Console.SetCursorPosition(width+10, i);
+                Console.Write(wallChar);
+            }
+           
+            
+            //dessiner les deux les murs horizontaux
+            for (int j = 1; j < width; j++)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.SetCursorPosition(j, width+1);
                 Console.Write(wallChar);
                 Console.SetCursorPosition(j, height);
                 Console.Write(wallChar);

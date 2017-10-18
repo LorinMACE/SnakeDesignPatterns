@@ -7,9 +7,8 @@ using System.Threading;
 
 namespace Snake_DesignPatterns.Views
 {
-    class VGameOver
+    static class VGameOver
     {
-
         public static void PrintHitItSelf(int Score)
         {
             Thread FeuArtifice;
@@ -29,15 +28,17 @@ namespace Snake_DesignPatterns.Views
 
             Thread FeuArtifice;
 
-            FeuArtifice = new Thread(new ThreadStart(ThreadFeu));
-            FeuArtifice.Start();
-
-            Console.ForegroundColor = ConsoleColor.Red;
+             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(2, 8);
             Console.WriteLine(" The Snake Hit the wall & DIED .");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.SetCursorPosition(2, 10);
             Console.WriteLine("Your Score is : " + Score);
+
+            FeuArtifice = new Thread(new ThreadStart(ThreadFeu));
+            FeuArtifice.Start();
+
+           
 
         }
 
@@ -62,11 +63,12 @@ namespace Snake_DesignPatterns.Views
             {
                 Random aleatoire = new Random();
                 int entier = aleatoire.Next();
-                int x = aleatoire.Next(5, 9);
-                int y = aleatoire.Next(10, 19);
+                int x = aleatoire.Next(14, 19);
+                int y = aleatoire.Next(9, 14);
                 Console.SetCursorPosition(x, y);
                 Console.ForegroundColor = listcolor[k];
     
+                
                 Console.WriteLine((char)0x002A);
 
                 Thread.Sleep(15);
@@ -80,8 +82,8 @@ namespace Snake_DesignPatterns.Views
             {
                 Random aleatoire = new Random();
                 int entier = aleatoire.Next();
-                int x = aleatoire.Next(2, 14);
-                int y = aleatoire.Next(2, 29);
+                int x = aleatoire.Next(3, 31);
+                int y = aleatoire.Next(5, 20);
                 Console.SetCursorPosition(x, y);
                 Console.ForegroundColor = listcolor[k];
                 Console.WriteLine((char)0x002A);
