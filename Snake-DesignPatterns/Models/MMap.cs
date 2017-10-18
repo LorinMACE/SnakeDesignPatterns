@@ -18,7 +18,8 @@ namespace Snake_DesignPatterns.Models
         Fruit,
         FruitLifeUp,
         FruitSpeedDown,
-        FruitSpeedUp
+        FruitSpeedUp,
+        Text
     };
 
     class MMap

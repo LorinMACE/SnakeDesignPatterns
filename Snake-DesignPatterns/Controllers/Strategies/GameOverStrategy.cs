@@ -13,8 +13,8 @@ namespace Snake_DesignPatterns.Controllers.Strategies
         public bool Run()
         {
             CGame.BuildGameboard();
-            CGame.EndGame();
             CGame.PrintGameBoard();
+            CGame.EndGame();
             VGameOver.Print(CGame.GameBoard,MGame.Instance.getScore(),DeathCause.HitSelf);
             return true;
         }
@@ -24,8 +24,8 @@ namespace Snake_DesignPatterns.Controllers.Strategies
         public bool Run()
         {
             CGame.BuildGameboard();
-            CGame.EndGame();
             CGame.PrintGameBoard();
+            CGame.EndGame();
             VGameOver.Print(CGame.GameBoard, MGame.Instance.getScore(), DeathCause.HitWall);
             return true;
         }

@@ -12,6 +12,27 @@ namespace Snake_DesignPatterns.Views
     {
         private static CellTypes[,] gameBoard;
 
+        private static string msghitSelf = "The Snake Hit his Body & DIED.";
+        private static string msghitWall = "The Snake Hit the wall & DIED.";
+
+
+        public static bool WriteGameBoard(string msg)
+        {
+            int length = msg.Length;
+           
+            foreach (char c in msg)
+            {
+                for(int j=0; j<length; j++)
+                {
+                    //GameBoard[2,j] = CellTypes.Text;//il faut dire que ca contient qqch
+                    gameBoard[j, 2] = CellTypes.Text;
+                    Console.SetCursorPosition(2, length - 4 + j );
+                    Console.Write(c);
+                }
+            }
+            return true;
+        }
+
 
         public static void Print(CellTypes[,] GameBoard,int Score, DeathCause cause)
         {
@@ -23,9 +44,11 @@ namespace Snake_DesignPatterns.Views
             Console.SetCursorPosition(2, 8);
 
             if (cause == DeathCause.HitSelf)
-                Console.WriteLine("The Snake Hit his Body & DIED."); //32
+                //Console.WriteLine("The Snake Hit his Body & DIED.");
+                WriteGameBoard(msghitSelf);
             else
-                Console.WriteLine("The Snake Hit the wall & DIED.");
+                WriteGameBoard(msghitWall);
+                //Console.WriteLine("The Snake Hit the wall & DIED.");
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.SetCursorPosition(8, 10);
